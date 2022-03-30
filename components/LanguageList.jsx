@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Link from 'next/link'
 import Localizer, { localeList } from '../utils/Localizer';
+import languageStyles from './LanguageList.module.css';
 
 const LanguageList = () => {
   return (
@@ -10,7 +10,7 @@ const LanguageList = () => {
         {localeList.map((newLocale) => {
           const localizer = new Localizer(newLocale);
           return (
-            <li key={newLocale}>
+            <li key={newLocale} className={languageStyles.languageName}>
               <Link href={`/locale/${newLocale}`}>
                 <a>{localizer.formatMessage({ id: 'languageName' })}</a>
               </Link>
