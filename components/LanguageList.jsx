@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Link from 'next/link'
 import Localizer, { localeList } from '../utils/Localizer';
 
-const LanguageList = ({ locale, onChangeLocale }) => {
+const LanguageList = () => {
   return (
     <header>
       <ul>
@@ -21,8 +21,4 @@ const LanguageList = ({ locale, onChangeLocale }) => {
     </header>
   );
 };
-LanguageList.propTypes = {
-  locale: PropTypes.string.isRequired,
-  onChangeLocale: PropTypes.func.isRequired,
-}
 export default LanguageList;
