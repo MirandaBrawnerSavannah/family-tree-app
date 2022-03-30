@@ -4,5 +4,6 @@
   "addPerson": "Ajouter une personne",
   "newTree": "Nouvel arbre",
   "returnHome": "Retourner à la page d'accueil",
-  "createFamilyTree": "Créer un arbre de famille"
+  "createFamilyTree": "Créer un arbre de famille",
+  "viewVerb": "Inspecter"
 }
