@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import Header from '../../../components/header'
+import LanguageList from '../../../components/LanguageList'
 
 const MainMenu = () => {
   const router = useRouter();
@@ -8,7 +8,7 @@ const MainMenu = () => {
 
   return (
     <>
-      <Header />
+      <LanguageList />
       <h1>Locale: {locale}</h1>
       <ul>
         <li>

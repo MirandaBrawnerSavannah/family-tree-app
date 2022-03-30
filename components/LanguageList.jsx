@@ -6,40 +6,17 @@ import Localizer, { localeList } from '../utils/Localizer';
 const LanguageList = ({ locale, onChangeLocale }) => {
   return (
     <header>
-      <select
-        value={locale}
-        onChange={(event) => onChangeLocale(event.target.value)}
-      >
+      <ul>
         {localeList.map((newLocale) => {
           const localizer = new Localizer(newLocale);
           return (
-            <option value={newLocale} key={newLocale}>
-              {localizer.formatMessage({ id: 'languageName' })}
-            </option>
+            <li key={newLocale}>
+              <Link href={`/locale/${newLocale}`}>
+                <a>{localizer.formatMessage({ id: 'languageName' })}</a>
+              </Link>
+            </li>
           );
         })}
-      </select>
-      <ul>
-        <li>
-          <Link href="/">
-            <a>Home</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/about">
-            <a>About</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/locale/first">
-            <a>First Locale</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/locale/second">
-            <a>Second Locale</a>
-          </Link>
-        </li>
       </ul>
     </header>
   );
