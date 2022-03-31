@@ -5,5 +5,7 @@
   "newTree": "Nouvel arbre",
   "returnHome": "Retourner à la page d'accueil",
   "createFamilyTree": "Créer un arbre de famille",
-  "viewVerb": "Inspecter"
+  "viewVerb": "Inspecter",
+  "born": "Né(e):",
+  "died": "Mort(e):"
 }

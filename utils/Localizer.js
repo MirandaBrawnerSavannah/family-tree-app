@@ -1,3 +1,4 @@
+import * as dateLocales from 'date-fns/locale';
 import english from '../locales/en.json';
 import french from '../locales/fr.json';
 
@@ -22,5 +23,26 @@ class Localizer {
 export const localeList = [
   'en', 'fr',
 ];
+
+export const defaultCountries = {
+  en: 'US',
+  fr: 'FR',
+};
+
+export const getDateInfo = (locale) => {
+  const generalLocaleInfo = dateLocales[locale];
+  if (generalLocaleInfo !== undefined) {
+    return generalLocaleInfo;
+  }
+  const country = defaultCountries[locale]
+  if (country !== undefined) {
+    const localeWithCountry = `${locale}${country}`; // example: enUS
+    const localeWithCountryInfo = dateLocales[localeWithCountry];
+    if (localeWithCountryInfo !== undefined) {
+      return localeWithCountryInfo;
+    }
+  }
+  return dateLocales.enUS;
+}
 
 export default Localizer;

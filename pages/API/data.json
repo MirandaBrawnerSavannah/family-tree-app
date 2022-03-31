@@ -1,14 +1,45 @@
 [
   {
     "id": 0,
-    "fullName": "Casey Tompkins"
+    "fullName": "Casey Tompkins",
+    "born": {
+      "year": 1972,
+      "month": 6,
+      "day": 24
+    }
   },
   {
     "id": 1,
-    "fullName": "Laura Ellis"
+    "fullName": "Laura Ellis",
+    "born": {
+      "year": 1971,
+      "month": 10,
+      "day": 17
+    }
   },
   {
     "id": 2,
-    "fullName": "Reggie Barnes"
+    "fullName": "Reggie Barnes",
+    "born": {
+      "year": 1996,
+      "month": 4,
+      "day": 13
+    }
+  },
+  {
+    "id": 3,
+    "fullName": "Vanessa Barnes",
+    "born": {
+      "year": 1997,
+      "month": 12,
+      "day": 4
+    }
+  },
+  {
+    "id": 4,
+    "fullName": "Judd Tompkins",
+    "born": {
+      "year": 1943
+    }
   }
 ]
