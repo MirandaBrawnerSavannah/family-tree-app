@@ -108,6 +108,7 @@
       "month": 6,
       "day": 15
     },
+    "parents": [10, 11],
     "children": [4],
     "marriedTo": [
       {
@@ -154,5 +155,35 @@
       "day": 22
     },
     "parents": [0, 1]
+  },
+  {
+    "id": 10,
+    "fullName": "Doris Rainford",
+    "born": {
+      "year": 1897,
+      "month": 6,
+      "day": 3
+    },
+    "children": [6],
+    "marriedTo": [
+      {
+        "spouse": 11
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "fullName": "Laurence Rainford",
+    "born": {
+      "year": 1897,
+      "month": 8,
+      "day": 12
+    },
+    "children": [6],
+    "marriedTo": [
+      {
+        "spouse": 10
+      }
+    ]
   }
 ]

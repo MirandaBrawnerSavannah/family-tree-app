@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { useRouter } from 'next/router'
 import Link from 'next/link'; 
 import data from '../pages/API/data.json';
@@ -6,14 +5,26 @@ import treeStyles from './Tree.module.css';
 import sortPeople from '../utils/sortPeople';
 import arrangeTree from '../utils/arrangeTree';
 import getGridSize from '../utils/getGridSize';
+import areMarried from '../utils/areMarried';
+import Localizer from '../utils/Localizer';
 
 const Tree = () => {
   const router = useRouter();
   const { locale } = router.query;
+  const intl = new Localizer(locale);
   const sortedList = sortPeople({ list: data, sortBy: 'age' });
   const dataGrid = arrangeTree(sortedList);
   const { minRow, maxRow, minCol, maxCol } = getGridSize(dataGrid);
-  
+
+  const lookupInGrid = ({ row, col }) => {
+    const matchingPeople = dataGrid.filter((personInGrid) => (
+      personInGrid.row == row && personInGrid.col == col
+    ));
+    if (matchingPeople.length > 0) {
+      return matchingPeople[0];
+    }
+    return undefined;
+  }
   const renderPerson = (personInGrid) => {
     const { person } = personInGrid;
     return (
@@ -26,17 +37,26 @@ const Tree = () => {
       </span>
     );
   };
-  const renderPersonOrEmptyBox = ({ row, col }) => {
-    const matchingPeople = dataGrid.filter((personInGrid) => (
-      personInGrid.row == row && personInGrid.col == col
-    ));
-    if (matchingPeople.length > 0) {
+  const renderBox = ({ row, col }) => {
+    const person = lookupInGrid({ row, col });
+    if (person !== undefined) {
       return (
         <span key={[row, col]}>
-          {renderPerson(matchingPeople[0])}
+          {renderPerson(person)}
         </span>
       );
     } else {
+      const leftNeighbor = lookupInGrid({ row, col: col - 1 });
+      const rightNeighbor = lookupInGrid({ row, col: col + 1 });
+      if (leftNeighbor && rightNeighbor) {
+        if (areMarried(leftNeighbor.person, rightNeighbor.person)) {
+          return (
+            <span className={treeStyles.marriageBox}>
+              {intl.formatMessage({ id: 'marriageLine' })}
+            </span>
+          );
+        }
+      }
       return <span key={[row, col]}></span>;
     }
   };
@@ -46,7 +66,7 @@ const Tree = () => {
     while (colIndex <= maxCol) {
       boxesInRow.push(
         <td key={[rowIndex, colIndex]} className={treeStyles.tableBox}>
-          {renderPersonOrEmptyBox({
+          {renderBox({
             row: rowIndex,
             col: colIndex,
           })}

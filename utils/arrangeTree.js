@@ -1,3 +1,4 @@
+
 const arrangeTree = (people) => {
   if (people.length === 0) return [];
   const grid = [];
@@ -31,9 +32,9 @@ const arrangeTree = (people) => {
     });
     if (spouses.length > 0) {
       const firstSpouse = spouses[0];
-      let colOffset = 1;
+      let colOffset = 2;
       while (isOccupied(firstSpouse.row, firstSpouse.col + colOffset)) {
-        colOffset += 1;
+        colOffset += 2;
       };
       moveRelativeTo({
         remainingIndex, personOnGrid: firstSpouse, rowOffset: 0, colOffset,

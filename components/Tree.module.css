@@ -3,6 +3,7 @@
   margin-right: auto;
   margin-top: 30px;
   margin-bottom: 30px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .tableRow {
   height: 50px;
@@ -10,7 +11,6 @@
   text-align: center;
 }
 .tableBox {
-  min-width: 250px;
   margin: auto;
   text-align: center;
 }
