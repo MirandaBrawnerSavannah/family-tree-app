@@ -12,9 +12,7 @@ const PersonProfile = ({ person }) => {
   const intl = new Localizer(locale);
   const dateLocaleInfo = getDateInfo(locale);
   const birthDate = getUncertainDate(person.born);
-  const formattedBirthDate = format(
-    birthDate, 'PPP', { locale: dateLocaleInfo }
-  );
+  const deathDate = getUncertainDate(person.died);
   return (
     <div className={profileStyles.profile}>
       <h2 className={profileStyles.nameHeading}>{person.fullName}</h2>
@@ -23,7 +21,15 @@ const PersonProfile = ({ person }) => {
           <span className={profileStyles.infoLabel}>
             {intl.formatMessage({ id: 'born' })}
           </span>
-          {formattedBirthDate}
+          {format(birthDate, 'PPP', { locale: dateLocaleInfo })}
+        </p>
+      )}
+      { deathDate && (
+        <p>
+          <span className={profileStyles.infoLabel}>
+            {intl.formatMessage({ id: 'died' })}
+          </span>
+          {format(deathDate, 'PPP', { locale: dateLocaleInfo })}
         </p>
       )}
     </div>

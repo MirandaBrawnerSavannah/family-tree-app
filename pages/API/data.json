@@ -39,7 +39,51 @@
     "id": 4,
     "fullName": "Judd Tompkins",
     "born": {
-      "year": 1943
+      "year": 1943,
+      "month": 2,
+      "day": 10
+    },
+    "died": {
+      "year": 2015,
+      "month": 4,
+      "day": 29
+    }
+  },
+  {
+    "id": 5,
+    "fullName": "Margaret Tompkins",
+    "born": {
+      "year": 1943,
+      "month": 9,
+      "day": 15
+    }
+  },
+  {
+    "id": 6,
+    "fullName": "Pauline Tompkins",
+    "born": {
+      "year": 1920,
+      "month": 3,
+      "day": 31
+    },
+    "died": {
+      "year": 2002,
+      "month": 6,
+      "day": 15
+    }
+  },
+  {
+    "id": 7,
+    "fullName": "Aaron Tompkins",
+    "born": {
+      "year": 1918,
+      "month": 2,
+      "day": 19
+    },
+    "died": {
+      "year": 1993,
+      "month": 11,
+      "day": 6
     }
   }
 ]
