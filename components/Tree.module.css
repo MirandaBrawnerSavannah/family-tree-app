@@ -1,3 +1,19 @@
+.table {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.tableRow {
+  height: 50px;
+  margin: atuo;
+  text-align: center;
+}
+.tableBox {
+  min-width: 250px;
+  margin: auto;
+  text-align: center;
+}
 .personBox {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   border-radius: 10px;
@@ -8,6 +24,7 @@
   border-style: solid;
   text-align: center;
   max-width: 200px;
+  min-height: 200px;
 }
 .personLink, .personLink * {
   color: darkblue;

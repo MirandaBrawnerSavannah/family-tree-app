@@ -12,8 +12,8 @@ const Tree = () => {
   const { locale } = router.query;
   const sortedList = sortPeople({ list: data, sortBy: 'age' });
   const dataGrid = arrangeTree(sortedList);
-  const gridSize = getGridSize(dataGrid);
   const { minRow, maxRow, minCol, maxCol } = getGridSize(dataGrid);
+  
   const renderPerson = (personInGrid) => {
     const { person } = personInGrid;
     return (
@@ -45,7 +45,7 @@ const Tree = () => {
     let colIndex = minCol;
     while (colIndex <= maxCol) {
       boxesInRow.push(
-        <td key={[rowIndex, colIndex]}>
+        <td key={[rowIndex, colIndex]} className={treeStyles.tableBox}>
           {renderPersonOrEmptyBox({
             row: rowIndex,
             col: colIndex,
@@ -55,7 +55,7 @@ const Tree = () => {
       colIndex += 1;
     }
     return (
-      <tr key={rowIndex}>
+      <tr key={rowIndex} className={treeStyles.tableRow}>
         {boxesInRow}
       </tr>
     );
@@ -68,7 +68,7 @@ const Tree = () => {
   }
   return (
     <div>
-      <table>
+      <table className={treeStyles.table}>
         <tbody>
           {rows}
         </tbody>
