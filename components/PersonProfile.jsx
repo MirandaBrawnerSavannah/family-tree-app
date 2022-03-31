@@ -47,7 +47,10 @@ const PersonProfile = () => {
             person.parents.map((parentId) => {
               const parent = lookupPerson(parentId);
               return (
-                <span className={profileStyles.personLink}>
+                <span
+                  key={parentId}
+                  className={profileStyles.personLink}
+                >
                   <Link href={`/locale/${locale}/person/${parentId}`}>
                     {parent.fullName}
                   </Link>
@@ -67,7 +70,10 @@ const PersonProfile = () => {
               const spouseId = marriage.spouse;
               const spouse = lookupPerson(spouseId);
               return (
-                <span className={profileStyles.personLink}>
+                <span
+                  key={spouseId}
+                  className={profileStyles.personLink}
+                >
                   <Link href={`/locale/${locale}/person/${spouseId}`}>
                     {spouse.fullName}
                   </Link>
@@ -86,7 +92,10 @@ const PersonProfile = () => {
             person.children.map((childId) => {
               const child = lookupPerson(childId);
               return (
-                <span className={profileStyles.personLink}>
+                <span
+                  key={childId}
+                  className={profileStyles.personLink}
+                >
                   <Link href={`/locale/${locale}/person/${childId}`}>
                     {child.fullName}
                   </Link>

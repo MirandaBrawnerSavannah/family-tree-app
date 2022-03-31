@@ -22,6 +22,9 @@ const arrangeTree = (people) => {
   }
   const moveToSpouse = (remainingIndex) => {
     const personOutsideGrid = remaining[remainingIndex];
+    if (personOutsideGrid.marriedTo === undefined) {
+      return false;
+    }
     const spouseIds = personOutsideGrid.marriedTo.map((marriage) => marriage.spouse);
     const spouses = grid.filter((personOnGrid) => {
       return spouseIds.includes(personOnGrid.person.id);
@@ -39,11 +42,17 @@ const arrangeTree = (people) => {
     }
     return false;
   }
-  moveToGrid({ remainingIndex: 0, row: 0, col: 0 });
-  let changed = false;
-  let remainingIndex = 0;
-  while (remainingIndex < remaining.length && !changed) {
-    changed = moveToSpouse(remainingIndex);
+  let startingRow = 0;
+  let startingCol = 0;
+  while (remaining.length > 0) {
+    moveToGrid({ remainingIndex: 0, row: startingRow, col: startingCol });
+    let changed = false;
+    let remainingIndex = 0;
+    while (remainingIndex < remaining.length && !changed) {
+      changed = moveToSpouse(remainingIndex);
+      remainingIndex += 1;
+    }
+    startingRow += 1;
   }
   return grid;
 };

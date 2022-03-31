@@ -6,7 +6,7 @@ const CommaSeparatedList = ({ list }) => {
     <span>
       <span>{list[0]}</span>
       {list.slice(1).map((element) => (
-        <span>,
+        <span key={element.key}>,
           <span className={commaListStyles.afterComma}>{element}</span>
         </span>
       ))}
