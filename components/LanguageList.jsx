@@ -19,9 +19,11 @@ const LanguageList = () => {
           }
           return (
             <li key={newLocale} className={languageStyles.languageName}>
-              <Link href={href}>
-                <a>{localizer.formatMessage({ id: 'languageName' })}</a>
-              </Link>
+              <span className={languageStyles.languageLink}>
+                <Link href={href}>
+                  {localizer.formatMessage({ id: 'languageName' })}
+                </Link>
+              </span>
             </li>
           );
         })}

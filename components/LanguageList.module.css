@@ -2,3 +2,7 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   list-style: none;
 }
+.languageLink, .languageLink * {
+  color: darkblue;
+  text-decoration: underline;
+}

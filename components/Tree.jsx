@@ -11,10 +11,12 @@ const Tree = () => {
     <div>
       <div>
         {data.map((person) => (
-          <p key={person.id} className={treeStyles.personName}>
-            <Link href={`/locale/${locale}/person/${person.id}`}>
-              {person.fullName}
-            </Link>
+          <p key={person.id} className={treeStyles.personBox}>
+            <span className={treeStyles.personLink}>
+              <Link href={`/locale/${locale}/person/${person.id}`}>
+                {person.fullName}
+              </Link>
+            </span>
           </p>
         ))}
       </div>

@@ -1,5 +1,9 @@
-.personName {
+.personBox {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.personLink, .personLink * {
+  color: darkblue;
+  text-decoration: underline;
 }
 .inspectButton {
   margin-left: 1em;

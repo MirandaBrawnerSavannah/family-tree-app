@@ -9,6 +9,10 @@
   max-width: 500px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+.personLink, .personLink * {
+  color: darkblue;
+  text-decoration: underline;
+}
 .nameHeading {
   font-weight: normal;
   margin: 5px;
