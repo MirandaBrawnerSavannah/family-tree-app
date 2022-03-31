@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import Link from 'next/link'; 
+import Image from 'next/image';
 import data from '../pages/API/data.json';
 import treeStyles from './Tree.module.css';
 import sortPeople from '../utils/sortPeople';
@@ -7,6 +8,7 @@ import arrangeTree from '../utils/arrangeTree';
 import getGridSize from '../utils/getGridSize';
 import areMarried from '../utils/areMarried';
 import Localizer from '../utils/Localizer';
+import areParentChild from '../utils/areParentChild';
 
 const Tree = () => {
   const router = useRouter();
@@ -56,6 +58,22 @@ const Tree = () => {
             </span>
           );
         }
+      }
+      const leftAbove = lookupInGrid({ row: row - 1, col: col - 1});
+      const rightAbove = lookupInGrid({ row: row - 1, col: col + 1 });
+      const below = lookupInGrid({ row: row + 1, col });
+      if (
+        leftAbove && rightAbove && below 
+        && areMarried(leftAbove.person, rightAbove.person)
+        && areParentChild({ parent: leftAbove.person, child: below.person })
+        && areParentChild({ parent: rightAbove.person, child: below.person })
+      ) {
+        return <Image
+          src="/vertical.png"
+          alt=""
+          width={100}
+          height={50}
+        />
       }
       return <span key={[row, col]}></span>;
     }
