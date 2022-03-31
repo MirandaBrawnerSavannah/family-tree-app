@@ -1,3 +1,5 @@
+import areParentChild from "./areParentChild";
+import getGridSize from "./getGridSize";
 
 const arrangeTree = (people) => {
   if (people.length === 0) return [];
@@ -33,7 +35,7 @@ const arrangeTree = (people) => {
     if (spouses.length > 0) {
       const firstSpouse = spouses[0];
       let colOffset = 2;
-      while (isOccupied(firstSpouse.row, firstSpouse.col + colOffset)) {
+      while (isOccupied({ row: firstSpouse.row, col: firstSpouse.col + colOffset })) {
         colOffset += 2;
       };
       moveRelativeTo({
@@ -43,17 +45,58 @@ const arrangeTree = (people) => {
     }
     return false;
   }
+  const moveToParent = (remainingIndex) => {
+    const personOutsideGrid = remaining[remainingIndex];
+    if (personOutsideGrid.parents === undefined) {
+      return false;
+    }
+    const parents = grid.filter((personOnGrid) => {
+      return personOutsideGrid.parents.includes(personOnGrid.person.id);
+    });
+    if (parents.length > 0) {
+      const parent = parents[0];
+      const rowOffset = 2;
+      let colOffset = parents.length - 1;
+      while (isOccupied({ row: parent.row + rowOffset, col: parent.col + colOffset })) {
+        colOffset += 2;
+      }
+      moveRelativeTo({
+        remainingIndex, personOnGrid: parent, rowOffset, colOffset
+      });
+      return true;
+    }
+    return false;
+  }
   let startingRow = 0;
   let startingCol = 0;
   while (remaining.length > 0) {
     moveToGrid({ remainingIndex: 0, row: startingRow, col: startingCol });
-    let changed = false;
+    let keepMatching = true;
     let remainingIndex = 0;
-    while (remainingIndex < remaining.length && !changed) {
-      changed = moveToSpouse(remainingIndex);
-      remainingIndex += 1;
+    while (keepMatching) {
+      let changed = false;
+      let foundSpouse = false;
+      remainingIndex = 0;
+      while (remainingIndex < remaining.length && !foundSpouse) {
+        foundSpouse = moveToSpouse(remainingIndex);
+        if (foundSpouse) {
+          changed = true;
+        }
+        remainingIndex += 1;
+      }
+      let foundChild = false;
+      remainingIndex = 0;
+      while (remainingIndex < remaining.length && !foundChild) {
+        foundChild = moveToParent(remainingIndex);
+        if (foundChild) {
+          changed = true;
+        }
+        remainingIndex += 1;
+      }
+      keepMatching = changed;
     }
-    startingRow += 1;
+    const { maxCol } = getGridSize(grid)
+    startingCol = maxCol + 1;
   }
   return grid;
 };

@@ -164,6 +164,11 @@
       "month": 6,
       "day": 3
     },
+    "died": {
+      "year": 1975,
+      "month": 9,
+      "day": 5
+    },
     "children": [6],
     "marriedTo": [
       {
@@ -178,6 +183,11 @@
       "year": 1897,
       "month": 8,
       "day": 12
+    },
+    "died": {
+      "year": 1967,
+      "month": 12,
+      "day": 10
     },
     "children": [6],
     "marriedTo": [

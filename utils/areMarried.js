@@ -1,4 +1,7 @@
 const areMarried = (firstPerson, secondPerson) => {
+  if (firstPerson.marriedTo === undefined) {
+    return false;
+  }
   const firstSpouses = firstPerson.marriedTo.map((marriage) => marriage.spouse);
   let married = false;
   firstSpouses.forEach((spouse) => {
@@ -7,5 +10,5 @@ const areMarried = (firstPerson, secondPerson) => {
     }
   });
   return married;
-}
+};
 export default areMarried;
