@@ -9,5 +9,7 @@
   "born": "Né(e) :",
   "died": "Mort(e) :",
   "parents": "Parents :",
-  "notFound": "Erreur : Pas trouvé"
+  "notFound": "Erreur : Pas trouvé",
+  "children": "Enfants :",
+  "marriedTo": "Marié(e) avec :"
 }

@@ -55,6 +55,41 @@ const PersonProfile = () => {
           } />
         </p>
       )}
+      {person.marriedTo && (
+        <p>
+          <span className={profileStyles.infoLabel}>
+            {intl.formatMessage({ id: 'marriedTo' })}
+          </span>
+          <CommaSeparatedList list={
+            person.marriedTo.map((marriage) => {
+              const spouseId = marriage.spouse;
+              const spouse = lookupPerson(spouseId);
+              return (
+                <Link href={`/locale/${locale}/person/${spouseId}`}>
+                  {spouse.fullName}
+                </Link>
+              );
+            })
+          } />
+        </p>
+      )}
+      {person.children && (
+        <p>
+          <span className={profileStyles.infoLabel}>
+            {intl.formatMessage({ id: 'children' })}
+          </span>
+          <CommaSeparatedList list={
+            person.children.map((childId) => {
+              const child = lookupPerson(childId);
+              return (
+                <Link href={`/locale/${locale}/person/${childId}`}>
+                  {child.fullName}
+                </Link>
+              );
+            })
+          } />
+        </p>
+      )}
     </div>
   );
 };

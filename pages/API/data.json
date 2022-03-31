@@ -7,7 +7,13 @@
       "month": 6,
       "day": 24
     },
-    "parents": [4, 5]
+    "parents": [4, 5],
+    "children": [3, 8, 9],
+    "marriedTo": [
+      {
+        "spouse": 1
+      }
+    ]
   },
   {
     "id": 1,
@@ -16,7 +22,13 @@
       "year": 1971,
       "month": 10,
       "day": 17
-    }
+    },
+    "children": [3, 8, 9],
+    "marriedTo": [
+      {
+        "spouse": 0
+      }
+    ]
   },
   {
     "id": 2,
@@ -25,7 +37,12 @@
       "year": 1996,
       "month": 4,
       "day": 13
-    }
+    },
+    "marriedTo": [
+      {
+        "spouse": 3
+      }
+    ]
   },
   {
     "id": 3,
@@ -35,7 +52,12 @@
       "month": 12,
       "day": 4
     },
-    "parents": [0, 1]
+    "parents": [0, 1],
+    "marriedTo": [
+      {
+        "spouse": 2
+      }
+    ]
   },
   {
     "id": 4,
@@ -50,7 +72,13 @@
       "month": 4,
       "day": 29
     },
-    "parents": [6, 7]
+    "parents": [6, 7],
+    "children": [0],
+    "marriedTo": [
+      {
+        "spouse": 5
+      }
+    ]
   },
   {
     "id": 5,
@@ -59,7 +87,13 @@
       "year": 1943,
       "month": 9,
       "day": 15
-    }
+    },
+    "children": [0],
+    "marriedTo": [
+      {
+        "spouse": 4
+      }
+    ]
   },
   {
     "id": 6,
@@ -73,7 +107,13 @@
       "year": 2002,
       "month": 6,
       "day": 15
-    }
+    },
+    "children": [4],
+    "marriedTo": [
+      {
+        "spouse": 7
+      }
+    ]
   },
   {
     "id": 7,
@@ -87,6 +127,32 @@
       "year": 1993,
       "month": 11,
       "day": 6
-    }
+    },
+    "children": [4],
+    "marriedTo": [
+      {
+        "spouse": 6
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "fullName": "Ashton Ellis",
+    "born": {
+      "year": 1999,
+      "month": 11,
+      "day": 7
+    },
+    "parents": [0, 1]
+  },
+  {
+    "id": 9,
+    "fullName": "Bobby Ellis",
+    "born": {
+      "year": 2002,
+      "month": 7,
+      "day": 22
+    },
+    "parents": [0, 1]
   }
 ]

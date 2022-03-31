@@ -9,5 +9,7 @@
   "born": "Born:",
   "died": "Died:",
   "parents": "Parents:",
-  "notFound": "Error: Not Found"
+  "notFound": "Error: Not Found",
+  "children": "Children:",
+  "marriedTo": "Married to:"
 }
