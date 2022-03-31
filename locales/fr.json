@@ -6,6 +6,8 @@
   "returnHome": "Retourner à la page d'accueil",
   "createFamilyTree": "Créer un arbre de famille",
   "viewVerb": "Inspecter",
-  "born": "Né(e):",
-  "died": "Mort(e):"
+  "born": "Né(e) :",
+  "died": "Mort(e) :",
+  "parents": "Parents :",
+  "notFound": "Erreur : Pas trouvé"
 }

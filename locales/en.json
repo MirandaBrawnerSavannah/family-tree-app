@@ -7,5 +7,7 @@
   "createFamilyTree": "Create a Family Tree",
   "viewVerb": "View",
   "born": "Born:",
-  "died": "Died:"
+  "died": "Died:",
+  "parents": "Parents:",
+  "notFound": "Error: Not Found"
 }

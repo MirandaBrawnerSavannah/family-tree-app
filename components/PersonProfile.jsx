@@ -4,12 +4,16 @@ import { format } from 'date-fns';
 import profileStyles from './PersonProfile.module.css';
 import getUncertainDate from '../utils/getUncertainDate';
 import Localizer, { getDateInfo } from '../utils/Localizer';
+import lookupPerson from '../utils/lookupPerson';
 
-
-const PersonProfile = ({ person }) => {
+const PersonProfile = () => {
   const router = useRouter();
-  const { locale } = router.query;
+  const { locale, personNumber } = router.query;
   const intl = new Localizer(locale);
+  const person = lookupPerson(personNumber);
+  if (person === undefined) {
+    return null;
+  }
   const dateLocaleInfo = getDateInfo(locale);
   const birthDate = getUncertainDate(person.born);
   const deathDate = getUncertainDate(person.died);
