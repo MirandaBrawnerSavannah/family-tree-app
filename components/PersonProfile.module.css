@@ -1,7 +1,7 @@
 .profile {
   border-radius: 10px;
   padding: 10px;
-  background-color: rgb(215, 215, 215);
+  background-color: rgb(230, 230, 230);
   border-color: rgb(53, 53, 53);
   border-width: 3px;
   border-style: solid;
@@ -15,5 +15,5 @@
 }
 .infoLabel {
   font-weight: bold;
-  margin-right: 5px;
+  margin-right: 0.6em;
 }

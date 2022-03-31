@@ -1,10 +1,12 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { format } from 'date-fns';
 import profileStyles from './PersonProfile.module.css';
 import getUncertainDate from '../utils/getUncertainDate';
 import Localizer, { getDateInfo } from '../utils/Localizer';
 import lookupPerson from '../utils/lookupPerson';
+import CommaSeparatedList from '../components/CommaSeparatedList';
 
 const PersonProfile = () => {
   const router = useRouter();
@@ -20,7 +22,7 @@ const PersonProfile = () => {
   return (
     <div className={profileStyles.profile}>
       <h2 className={profileStyles.nameHeading}>{person.fullName}</h2>
-      { birthDate && (
+      {birthDate && (
         <p>
           <span className={profileStyles.infoLabel}>
             {intl.formatMessage({ id: 'born' })}
@@ -28,12 +30,29 @@ const PersonProfile = () => {
           {format(birthDate, 'PPP', { locale: dateLocaleInfo })}
         </p>
       )}
-      { deathDate && (
+      {deathDate && (
         <p>
           <span className={profileStyles.infoLabel}>
             {intl.formatMessage({ id: 'died' })}
           </span>
           {format(deathDate, 'PPP', { locale: dateLocaleInfo })}
+        </p>
+      )}
+      {person.parents && (
+        <p>
+          <span className={profileStyles.infoLabel}>
+            {intl.formatMessage({ id: 'parents' })}
+          </span>
+          <CommaSeparatedList list={
+            person.parents.map((parentId) => {
+              const parent = lookupPerson(parentId);
+              return (
+                <Link href={`/locale/${locale}/person/${parentId}`}>
+                  {parent.fullName}
+                </Link>
+              );
+            })
+          } />
         </p>
       )}
     </div>
