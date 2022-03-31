@@ -6,29 +6,34 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .tableRow {
-  height: 50px;
-  margin: atuo;
-  text-align: center;
+  /* height: 100px; */
+  margin: auto;
+  text-align: left;
 }
 .tableBox {
+  /* height: 100px; */
   margin: auto;
   text-align: center;
-}
-.personBox {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   border-radius: 10px;
   padding: 10px;
-  background-color: rgb(230, 230, 230);
+  /* background-color: rgb(230, 230, 230);
   border-color: rgb(53, 53, 53);
   border-width: 1px;
-  border-style: solid;
+  border-style: solid; */
+  max-width: 200px;
+}
+.personBox {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 10px;
   text-align: center;
   max-width: 200px;
-  min-height: 200px;
+  height: 100px;
 }
 .personLink, .personLink * {
   color: darkblue;
   text-decoration: underline;
+  height: 100px;
 }
 .inspectButton {
   margin-left: 1em;

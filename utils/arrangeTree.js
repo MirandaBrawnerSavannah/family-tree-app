@@ -1,5 +1,4 @@
-import areParentChild from "./areParentChild";
-import getGridSize from "./getGridSize";
+import getGridSize from './getGridSize';
 
 const arrangeTree = (people) => {
   if (people.length === 0) return [];
@@ -58,7 +57,7 @@ const arrangeTree = (people) => {
       const rowOffset = 2;
       let colOffset = parents.length - 1;
       while (isOccupied({ row: parent.row + rowOffset, col: parent.col + colOffset })) {
-        colOffset += 2;
+        colOffset += 3;
       }
       moveRelativeTo({
         remainingIndex, personOnGrid: parent, rowOffset, colOffset
