@@ -3,11 +3,14 @@ import Link from 'next/link';
 import data from '../pages/API/data.json';
 import treeStyles from './Tree.module.css';
 import sortPeople from '../utils/sortPeople';
+import arrangeTree from '../utils/arrangeTree';
 
 const Tree = () => {
   const router = useRouter();
   const { locale } = router.query;
   const sortedList = sortPeople({ list: data, sortBy: 'age' });
+  const dataGrid = arrangeTree(sortedList);
+  console.log(dataGrid);
   return (
     <div>
       <div>
