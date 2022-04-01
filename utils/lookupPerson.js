@@ -1,6 +1,4 @@
-import data from '../pages/API/data.json';
-
-const lookupPerson = (personNumber) => {
+const lookupPerson = ({ personNumber, data }) => {
   const withMatchingId = data.filter((person) => {
     const isEqual = (person.id == personNumber);
     return isEqual;

@@ -7,12 +7,13 @@ import getUncertainDate from '../utils/getUncertainDate';
 import Localizer, { getDateInfo } from '../utils/Localizer';
 import lookupPerson from '../utils/lookupPerson';
 import CommaSeparatedList from '../components/CommaSeparatedList';
+import data from '../pages/API/data.json';
 
 const PersonProfile = () => {
   const router = useRouter();
   const { locale, personNumber } = router.query;
   const intl = new Localizer(locale);
-  const person = lookupPerson(personNumber);
+  const person = lookupPerson({ personNumber, data });
   if (person === undefined) {
     return null;
   }
@@ -45,7 +46,7 @@ const PersonProfile = () => {
           </span>
           <CommaSeparatedList list={
             person.parents.map((parentId) => {
-              const parent = lookupPerson(parentId);
+              const parent = lookupPerson({ personNumber: parentId, data });
               return (
                 <span
                   key={parentId}
@@ -68,7 +69,7 @@ const PersonProfile = () => {
           <CommaSeparatedList list={
             person.marriedTo.map((marriage) => {
               const spouseId = marriage.spouse;
-              const spouse = lookupPerson(spouseId);
+              const spouse = lookupPerson({ personNumber: spouseId, data });
               return (
                 <span
                   key={spouseId}
@@ -90,7 +91,7 @@ const PersonProfile = () => {
           </span>
           <CommaSeparatedList list={
             person.children.map((childId) => {
-              const child = lookupPerson(childId);
+              const child = lookupPerson({ personNumber: childId, data });
               return (
                 <span
                   key={childId}
