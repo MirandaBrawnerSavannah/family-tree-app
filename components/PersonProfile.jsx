@@ -120,12 +120,18 @@ const PersonProfile = () => {
               </p>
             )}
             <p>
-              <button className={profileStyles.button} onClick={() => {
-                const newList = markForDeletion({ personId: personNumber, data: listOfPeople });
-                setListOfPeople(newList);
-                router.push(`/locale/${locale}`);
-                setListOfPeople(removeFromTree(listOfPeople));
-              }}>
+              <button 
+                type="button" 
+                className={profileStyles.button} 
+                onClick={() => {
+                  const newList = markForDeletion(
+                    { personId: personNumber, data: listOfPeople }
+                  );
+                  setListOfPeople(newList);
+                  router.push(`/locale/${locale}`);
+                  setListOfPeople(removeFromTree(listOfPeople));
+                }}
+              >
                 {intl.formatMessage({ id: 'removeFromTree' })}
               </button>
             </p>

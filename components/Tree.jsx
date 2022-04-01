@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useRouter } from 'next/router'
 import Link from 'next/link'; 
 import Image from 'next/image';
@@ -11,7 +10,7 @@ import Localizer from '../utils/Localizer';
 import areParentChild from '../utils/areParentChild';
 import { TreeContext } from './TreeContext';
 import getNextAvailableID from '../utils/getNextAvailableID';
-import removeFromTree from '../utils/removeFromTree';
+import addPerson from '../utils/addPerson';
 
 const Tree = () => {
   const router = useRouter();
@@ -113,12 +112,41 @@ const Tree = () => {
           rowIndex++;
         }
         return (
-          <div>
+          <div className={treeStyles.treePage}>
             <table className={treeStyles.table}>
               <tbody>
                 {rows}
               </tbody>
             </table>
+            <button
+              type="button"
+              className={treeStyles.addButton}
+              onClick={() => {
+                const newPerson = {
+                  id: nextId,
+                  fullName: 'Clarissa Tompkins',
+                  born: {
+                    year: 1922,
+                    month: 12,
+                    day: 5
+                  },
+                  died: {
+                    year: 2000,
+                    month: 1,
+                    day: 7
+                  },
+                  parents: [10, 11],
+                  children: [5],
+                  marriedTo: [{
+                    spouse: 7,
+                  }],
+                }
+                const newList = addPerson({ person: newPerson, data: listOfPeople });
+                setListOfPeople(newList);
+              }}
+            >
+              {intl.formatMessage({ id: 'addPerson' })}
+            </button>
           </div>
         );
       }}

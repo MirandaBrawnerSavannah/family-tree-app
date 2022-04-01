@@ -1,3 +1,8 @@
+.treePage {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
 .table {
   margin-left: auto;
   margin-right: auto;
@@ -6,21 +11,15 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .tableRow {
-  /* height: 100px; */
   margin: auto;
   text-align: left;
 }
 .tableBox {
-  /* height: 100px; */
   margin: auto;
   text-align: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   border-radius: 10px;
   padding: 10px;
-  /* background-color: rgb(230, 230, 230);
-  border-color: rgb(53, 53, 53);
-  border-width: 1px;
-  border-style: solid; */
   max-width: 200px;
 }
 .personBox {
@@ -35,7 +34,18 @@
   text-decoration: underline;
   height: 100px;
 }
-.inspectButton {
-  margin-left: 1em;
+.addButton {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: rgb(230, 230, 230);
+  font-size: 16px;
+  border-radius: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
 }
