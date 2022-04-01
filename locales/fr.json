@@ -14,5 +14,7 @@
   "marriageLine": "...marié(e)s...",
   "marriedTo": "Marié(e) avec :",
   "removeFromTree": "Sortir de l'arbre",
-  "newPerson": "Nouvelle personne"
+  "newPerson": "Nouvelle personne",
+  "updateTree": "Mettre l'arbre à jour",
+  "cancel": "Annuler"
 }

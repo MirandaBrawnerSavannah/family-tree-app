@@ -10,7 +10,18 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin: auto;
 }
-.nameHeading {
+.title {
   font-weight: normal;
   margin: 5px;
+}
+.button {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 7px;
 }

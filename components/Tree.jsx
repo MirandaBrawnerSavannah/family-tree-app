@@ -9,8 +9,6 @@ import areMarried from '../utils/areMarried';
 import Localizer from '../utils/Localizer';
 import areParentChild from '../utils/areParentChild';
 import { TreeContext } from './TreeContext';
-import getNextAvailableID from '../utils/getNextAvailableID';
-import addPerson from '../utils/addPerson';
 
 const Tree = () => {
   const router = useRouter();
@@ -18,7 +16,6 @@ const Tree = () => {
     <TreeContext.Consumer>
       {contextValue => {
         const [listOfPeople, setListOfPeople] = contextValue;
-        const nextId = getNextAvailableID(listOfPeople);
         const { locale } = router.query;
         const intl = new Localizer(locale);
         const sortedList = sortPeople({ list: listOfPeople, sortBy: 'age' });
@@ -122,27 +119,6 @@ const Tree = () => {
               type="button"
               className={treeStyles.addButton}
               onClick={() => {
-                const newPerson = {
-                  id: nextId,
-                  fullName: 'Clarissa Tompkins',
-                  born: {
-                    year: 1922,
-                    month: 12,
-                    day: 5
-                  },
-                  died: {
-                    year: 2000,
-                    month: 1,
-                    day: 7
-                  },
-                  parents: [10, 11],
-                  children: [5],
-                  marriedTo: [{
-                    spouse: 7,
-                  }],
-                }
-                const newList = addPerson({ newPerson, data: listOfPeople });
-                setListOfPeople(newList);
                 router.push(`/locale/${locale}/newPerson#addPersonMenu`);
               }}
             >

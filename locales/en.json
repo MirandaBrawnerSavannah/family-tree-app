@@ -14,5 +14,7 @@
   "marriageLine": "...married...",
   "marriedTo": "Married to:",
   "removeFromTree": "Remove from Tree",
-  "newPerson": "New Person"
+  "newPerson": "New Person",
+  "updateTree": "Update Tree",
+  "cancel": "Cancel"
 }
