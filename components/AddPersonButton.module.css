@@ -1,0 +1,19 @@
+.component {
+  margin: auto;
+  text-align: center;
+}
+.addButton {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: rgb(230, 230, 230);
+  font-size: 16px;
+  border-radius: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}

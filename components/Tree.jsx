@@ -115,15 +115,6 @@ const Tree = () => {
                 {rows}
               </tbody>
             </table>
-            <button
-              type="button"
-              className={treeStyles.addButton}
-              onClick={() => {
-                router.push(`/locale/${locale}/newPerson#addPersonMenu`);
-              }}
-            >
-              {intl.formatMessage({ id: 'addPerson' })}
-            </button>
           </div>
         );
       }}
