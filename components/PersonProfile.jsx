@@ -14,7 +14,7 @@ const PersonProfile = () => {
   return (
     <TreeContext.Consumer>
       { contextValue => {
-        const listOfPeople = contextValue[0];
+        const [listOfPeople, setListOfPeople] = contextValue;
         const { locale, personNumber } = router.query;
         const intl = new Localizer(locale);
         const person = lookupPerson({ personNumber, data: listOfPeople });

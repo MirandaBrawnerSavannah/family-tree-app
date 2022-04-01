@@ -1,12 +1,16 @@
-import React from 'react';
+import {
+  createContext, useState, useMemo, useContext,
+} from 'react';
 import PropTypes from 'prop-types';
-import data from '../pages/API/data.json';
+import initialData from '../pages/API/data.json';
 
-export const TreeContext = React.createContext([]);
+export const TreeContext = createContext([]);
 
 const TreeContextProvider = ({ children }) => {
+  const [data, setData] = useState(initialData);
+  const contextValue = [data, setData];
   return (
-    <TreeContext.Provider value={[data]}>
+    <TreeContext.Provider value={contextValue}>
       {children}
     </TreeContext.Provider>
   );
@@ -14,4 +18,9 @@ const TreeContextProvider = ({ children }) => {
 TreeContextProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
+
+export const useAppContext = () => {
+  return useContext(TreeContext);
+};
+
 export default TreeContextProvider;
