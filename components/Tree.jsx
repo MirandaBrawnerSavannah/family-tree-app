@@ -32,7 +32,7 @@ const Tree = () => {
     return (
       <span key={person.id} className={treeStyles.personBox}>
         <span className={treeStyles.personLink}>
-          <Link href={`/locale/${locale}/person/${person.id}`}>
+          <Link href={`/locale/${locale}/person/${person.id}#profile`}>
             {person.fullName}
           </Link>
         </span>

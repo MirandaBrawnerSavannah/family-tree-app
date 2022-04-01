@@ -20,7 +20,7 @@ const PersonProfile = () => {
   const birthDate = getUncertainDate(person.born);
   const deathDate = getUncertainDate(person.died);
   return (
-    <div className={profileStyles.profile}>
+    <div className={profileStyles.profile} id="profile">
       <h2 className={profileStyles.nameHeading}>{person.fullName}</h2>
       {birthDate && (
         <p>
@@ -51,7 +51,7 @@ const PersonProfile = () => {
                   key={parentId}
                   className={profileStyles.personLink}
                 >
-                  <Link href={`/locale/${locale}/person/${parentId}`}>
+                  <Link href={`/locale/${locale}/person/${parentId}#profile`}>
                     {parent.fullName}
                   </Link>
                 </span>
@@ -74,7 +74,7 @@ const PersonProfile = () => {
                   key={spouseId}
                   className={profileStyles.personLink}
                 >
-                  <Link href={`/locale/${locale}/person/${spouseId}`}>
+                  <Link href={`/locale/${locale}/person/${spouseId}#profile`}>
                     {spouse.fullName}
                   </Link>
                 </span>
@@ -96,7 +96,7 @@ const PersonProfile = () => {
                   key={childId}
                   className={profileStyles.personLink}
                 >
-                  <Link href={`/locale/${locale}/person/${childId}`}>
+                  <Link href={`/locale/${locale}/person/${childId}#profile`}>
                     {child.fullName}
                   </Link>
                 </span>
