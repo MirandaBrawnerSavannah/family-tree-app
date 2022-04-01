@@ -3,6 +3,7 @@ import {
 } from 'react';
 import PropTypes from 'prop-types';
 import initialData from '../pages/API/data.json';
+import removeFromTree from '../utils/removeFromTree';
 
 export const TreeContext = createContext([]);
 

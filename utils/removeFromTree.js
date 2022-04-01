@@ -1,4 +1,4 @@
-const removeFromTree = ({ personId, data }) => {
+const removeOnePersonFromTree = ({ personId, data }) => {
   const copyOfData = [...data];
   data.forEach((nextPerson, index) => {
     if (nextPerson.id === personId) {
@@ -33,6 +33,15 @@ const removeFromTree = ({ personId, data }) => {
       });
       nextPerson.marriedTo = newMarriageList;
     }
+  });
+  return copyOfData;
+};
+const removeFromTree = (data) => {
+  let copyOfData = [...data];
+  const idsToRemove = copyOfData.filter((person) => person.markedForDeletion)
+    .map((person) => person.id);
+  idsToRemove.forEach((personId) => {
+    copyOfData = removeOnePersonFromTree({ personId, data: copyOfData });
   });
   return copyOfData;
 };

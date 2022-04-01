@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useRouter } from 'next/router'
 import Link from 'next/link'; 
 import Image from 'next/image';
@@ -10,6 +11,7 @@ import Localizer from '../utils/Localizer';
 import areParentChild from '../utils/areParentChild';
 import { TreeContext } from './TreeContext';
 import getNextAvailableID from '../utils/getNextAvailableID';
+import removeFromTree from '../utils/removeFromTree';
 
 const Tree = () => {
   const router = useRouter();
@@ -17,9 +19,7 @@ const Tree = () => {
     <TreeContext.Consumer>
       {contextValue => {
         const [listOfPeople, setListOfPeople] = contextValue;
-        console.log('List of People:', listOfPeople);
         const nextId = getNextAvailableID(listOfPeople);
-        console.log('Next available ID:', nextId);
         const { locale } = router.query;
         const intl = new Localizer(locale);
         const sortedList = sortPeople({ list: listOfPeople, sortBy: 'age' });
