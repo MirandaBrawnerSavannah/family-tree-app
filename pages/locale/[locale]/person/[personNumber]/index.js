@@ -4,7 +4,7 @@ import Title from '../../../../../components/Title';
 import Tree from '../../../../../components/Tree';
 import PersonProfile from '../../../../../components/PersonProfile';
 
-const Comment = () => {
+const PersonPage = () => {
   const router = useRouter();
   const { locale, personNumber } = router.query;
 
@@ -20,4 +20,4 @@ const Comment = () => {
   );
 };
 
-export default Comment;
+export default PersonPage;

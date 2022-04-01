@@ -75,7 +75,7 @@
       "day": 29
     },
     "parents": [6, 7],
-    "children": [0],
+    "children": [0, 20],
     "marriedTo": [
       {
         "spouse": 5
@@ -90,7 +90,7 @@
       "month": 9,
       "day": 15
     },
-    "children": [0],
+    "children": [0, 20],
     "marriedTo": [
       {
         "spouse": 4
