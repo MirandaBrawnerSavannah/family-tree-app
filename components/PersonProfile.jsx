@@ -44,7 +44,7 @@ const PersonProfile = () => {
                 {format(deathDate, 'PPP', { locale: dateLocaleInfo })}
               </p>
             )}
-            {person.parents && (
+            {person.parents && person.parents.length > 0 && (
               <p>
                 <span className={profileStyles.infoLabel}>
                   {intl.formatMessage({ id: 'parents' })}
@@ -68,7 +68,7 @@ const PersonProfile = () => {
                 } />
               </p>
             )}
-            {person.marriedTo && (
+            {person.marriedTo && person.marriedTo.length > 0 && (
               <p>
                 <span className={profileStyles.infoLabel}>
                   {intl.formatMessage({ id: 'marriedTo' })}
@@ -93,7 +93,7 @@ const PersonProfile = () => {
                 } />
               </p>
             )}
-            {person.children && (
+            {person.children && person.children.length > 0 && (
               <p>
                 <span className={profileStyles.infoLabel}>
                   {intl.formatMessage({ id: 'children' })}
@@ -103,6 +103,7 @@ const PersonProfile = () => {
                     const child = lookupPerson(
                       { personNumber: childId, data: listOfPeople }
                     );
+                    if (child === undefined) return undefined;
                     return (
                       <span
                         key={childId}
@@ -113,13 +114,13 @@ const PersonProfile = () => {
                         </Link>
                       </span>
                     );
-                  })
+                  }).filter((element) => element !== undefined)
                 } />
               </p>
             )}
             <p>
               <button className={profileStyles.button} onClick={() => {
-                const newList = removeFromTree({ personId: 9, data: listOfPeople });
+                const newList = removeFromTree({ personId: 4, data: listOfPeople });
                 setListOfPeople(newList);
               }}>
                 {intl.formatMessage({ id: 'removeFromTree' })}

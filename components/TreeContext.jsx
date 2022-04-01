@@ -8,7 +8,9 @@ export const TreeContext = createContext([]);
 
 const TreeContextProvider = ({ children }) => {
   const [data, setData] = useState(initialData);
-  const contextValue = [data, setData];
+  const contextValue = useMemo(() => {
+    return [data, setData];
+  }, [data, setData]);
   return (
     <TreeContext.Provider value={contextValue}>
       {children}
