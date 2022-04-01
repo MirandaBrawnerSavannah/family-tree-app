@@ -9,6 +9,7 @@ import areMarried from '../utils/areMarried';
 import Localizer from '../utils/Localizer';
 import areParentChild from '../utils/areParentChild';
 import { TreeContext } from './TreeContext';
+import getNextAvailableID from '../utils/getNextAvailableID';
 
 const Tree = () => {
   const router = useRouter();
@@ -16,6 +17,8 @@ const Tree = () => {
     <TreeContext.Consumer>
       {contextValue => {
         const [listOfPeople, setListOfPeople] = contextValue;
+        const nextId = getNextAvailableID(listOfPeople);
+        console.log('Next available ID:', nextId);
         const { locale } = router.query;
         const intl = new Localizer(locale);
         const sortedList = sortPeople({ list: listOfPeople, sortBy: 'age' });
