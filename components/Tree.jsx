@@ -17,6 +17,7 @@ const Tree = () => {
     <TreeContext.Consumer>
       {contextValue => {
         const [listOfPeople, setListOfPeople] = contextValue;
+        console.log('List of People:', listOfPeople);
         const nextId = getNextAvailableID(listOfPeople);
         console.log('Next available ID:', nextId);
         const { locale } = router.query;

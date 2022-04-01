@@ -22,3 +22,14 @@
   font-weight: bold;
   margin-right: 0.6em;
 }
+.button {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: white;
+  /* color: white; */
+  font-size: 16px;
+  border-radius: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}

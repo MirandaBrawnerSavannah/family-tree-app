@@ -8,6 +8,7 @@ import Localizer, { getDateInfo } from '../utils/Localizer';
 import lookupPerson from '../utils/lookupPerson';
 import CommaSeparatedList from '../components/CommaSeparatedList';
 import { TreeContext } from './TreeContext';
+import removeFromTree from '../utils/removeFromTree';
 
 const PersonProfile = () => {
   const router = useRouter();
@@ -116,6 +117,14 @@ const PersonProfile = () => {
                 } />
               </p>
             )}
+            <p>
+              <button className={profileStyles.button} onClick={() => {
+                const newList = removeFromTree({ personId: 9, data: listOfPeople });
+                setListOfPeople(newList);
+              }}>
+                {intl.formatMessage({ id: 'removeFromTree' })}
+              </button>
+            </p>
           </div>
         );
       }}

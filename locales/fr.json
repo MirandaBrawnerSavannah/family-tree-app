@@ -12,5 +12,6 @@
   "notFound": "Erreur : Pas trouvé",
   "children": "Enfants :",
   "marriageLine": "...marié(e)s...",
-  "marriedTo": "Marié(e) avec :"
+  "marriedTo": "Marié(e) avec :",
+  "removeFromTree": "Sortir de l'arbre"
 }
