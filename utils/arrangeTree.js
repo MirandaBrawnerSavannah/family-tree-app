@@ -57,7 +57,7 @@ const arrangeTree = (people) => {
       const rowOffset = 2;
       let colOffset = parents.length - 1;
       while (isOccupied({ row: parent.row + rowOffset, col: parent.col + colOffset })) {
-        colOffset += 3;
+        colOffset += 4;
       }
       moveRelativeTo({
         remainingIndex, personOnGrid: parent, rowOffset, colOffset

@@ -141,7 +141,7 @@ const Tree = () => {
                     spouse: 7,
                   }],
                 }
-                const newList = addPerson({ person: newPerson, data: listOfPeople });
+                const newList = addPerson({ newPerson, data: listOfPeople });
                 setListOfPeople(newList);
               }}
             >
