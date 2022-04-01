@@ -143,6 +143,7 @@ const Tree = () => {
                 }
                 const newList = addPerson({ newPerson, data: listOfPeople });
                 setListOfPeople(newList);
+                router.push(`/locale/${locale}/newPerson#addPersonMenu`);
               }}
             >
               {intl.formatMessage({ id: 'addPerson' })}

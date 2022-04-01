@@ -13,5 +13,6 @@
   "children": "Children:",
   "marriageLine": "...married...",
   "marriedTo": "Married to:",
-  "removeFromTree": "Remove from Tree"
+  "removeFromTree": "Remove from Tree",
+  "newPerson": "New Person"
 }
