@@ -1,6 +1,10 @@
+import TreeContextProvider from '../components/TreeContext';
+
 const AppWrapper = ({ Component, pageProps = {} }) => {
   return (
-    <Component {...pageProps} />
+    <TreeContextProvider>
+      <Component {...pageProps} />
+    </TreeContextProvider>
   );
 }
 export default AppWrapper;
