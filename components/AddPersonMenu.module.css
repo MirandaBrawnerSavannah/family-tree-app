@@ -25,3 +25,11 @@
   padding-bottom: 5px;
   margin: 7px;
 }
+.textFieldLabel {
+  margin-right: 7px;
+}
+.textField {
+  min-height: 25px;
+  border-radius: 5px;
+  font-size: 16px;
+}

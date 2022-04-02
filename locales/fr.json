@@ -16,5 +16,6 @@
   "removeFromTree": "Sortir de l'arbre",
   "newPerson": "Nouvelle personne",
   "updateTree": "Mettre l'arbre à jour",
-  "cancel": "Annuler"
+  "cancel": "Annuler",
+  "fullName": "Nom :"
 }

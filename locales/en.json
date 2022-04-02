@@ -16,5 +16,6 @@
   "removeFromTree": "Remove from Tree",
   "newPerson": "New Person",
   "updateTree": "Update Tree",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "fullName": "Full Name:"
 }
