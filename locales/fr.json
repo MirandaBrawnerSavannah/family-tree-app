@@ -17,5 +17,13 @@
   "newPerson": "Nouvelle personne",
   "updateTree": "Mettre l'arbre à jour",
   "cancel": "Annuler",
-  "fullName": "Nom :"
+  "fullName": "Nom :",
+  "dateOfBirth": "Date de naissance",
+  "year": "An :",
+  "month": "Mois :",
+  "monthNames": "janvier,février,mars,avril,mai,juin,juillet,août,septembre,octobre,novembre,décembre",
+  "day": "Jour: ",
+  "dateOfDeath": "Date de mort",
+  "alive": "Vivant(e) :",
+  "relatives": "Famille"
 }

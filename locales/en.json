@@ -17,5 +17,13 @@
   "newPerson": "New Person",
   "updateTree": "Update Tree",
   "cancel": "Cancel",
-  "fullName": "Full Name:"
+  "fullName": "Full Name:",
+  "dateOfBirth": "Date of Birth",
+  "year": "Year:",
+  "month": "Month:",
+  "monthNames": "January,February,March,April,May,June,July,August,September,October,November,December",
+  "day": "Day:",
+  "dateOfDeath": "Date of Death",
+  "alive": "Still Alive:",
+  "relatives": "Relatives"
 }

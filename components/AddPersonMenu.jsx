@@ -8,13 +8,17 @@ import addPerson from '../utils/addPerson';
 
 const AddPersonMenu = () => {
   const router = useRouter();
-  const [fullName, setFullName] = useState('');
+  const { locale } = router.query;
+  const intl = new Localizer(locale);
+  const [fullName, setFullName] = useState(intl.formatMessage({ id: 'newPerson'}));
+  const [born, setBorn] = useState({ year: 1900, month: 1, day: 1 });
+  const [died, setDied] = useState({ year: 2000, month: 1, day: 1 });
+  const [isAlive, setIsAlive] = useState(false);
   return (
     <TreeContext.Consumer>
       { contextValue => {
         const [listOfPeople, setListOfPeople] = contextValue;
-        const { locale } = router.query;
-        const intl = new Localizer(locale);
+        const monthNames = intl.formatMessage({ id: 'monthNames' }).split(',');
         const nextId = getNextAvailableID(listOfPeople);
         return (
           <div className={menuStyles.menu} id="addPersonMenu">
@@ -33,6 +37,127 @@ const AddPersonMenu = () => {
                 onChange={(event) => setFullName(event.target.value)}
               />
             </p>
+            <div className={menuStyles.inputSection}>
+              <h3 className={menuStyles.smallTitle}>
+                {intl.formatMessage({ id: 'dateOfBirth' })}
+              </h3>
+              <p>
+                <label htmlFor="birthYearInput" className={menuStyles.textFieldLabel}>
+                  {intl.formatMessage({ id: 'year' })}
+                </label>
+                <input
+                  type="text"
+                  id="birthYearInput"
+                  value={born.year}
+                  className={menuStyles.textField}
+                  onChange={(event) => setBorn({...born, year: event.target.value})}
+                />
+              </p>
+              <p>
+                <label htmlFor="birthMonthInput" className={menuStyles.textFieldLabel}>
+                  {intl.formatMessage({ id: 'month' })}
+                </label>
+                <select
+                  id="birthMonthInput"
+                  value={born.month}
+                  className={menuStyles.dropDownMenu}
+                  onChange={(event) => setBorn({...born, month: event.target.value})}
+                >
+                  {monthNames.map((monthName, index) => (
+                    <option
+                      value={index + 1}
+                      key={monthName}
+                    >
+                      {monthName}
+                    </option>
+                  ))}
+                </select>
+              </p>
+              <p>
+                <label htmlFor="birthDayInput" className={menuStyles.textFieldLabel}>
+                  {intl.formatMessage({ id: 'day' })}
+                </label>
+                <input
+                  type="number"
+                  min={1}
+                  max={31}
+                  value={born.day}
+                  id="birthDayInput"
+                  className={menuStyles.textField}
+                  onChange={(event) => setBorn({...born, day: event.target.value})}
+                />
+              </p>
+            </div>
+            <div className={menuStyles.inputSection}>
+              <h3 className={menuStyles.smallTitle}>
+                {intl.formatMessage({ id: 'dateOfDeath' })}
+              </h3>
+              <p>
+                <label htmlFor="stillAliveInput" className={menuStyles.checkboxLabel}>
+                    {intl.formatMessage({ id: 'alive' })}
+                </label>
+                <input
+                  type="checkbox"
+                  id="stillAliveInput"
+                  checked={isAlive}
+                  className={menuStyles.checkbox}
+                  onChange={() => setIsAlive(!isAlive)} />
+              </p>
+              <p>
+                <label htmlFor="deathYearInput" className={menuStyles.textFieldLabel}>
+                  {intl.formatMessage({ id: 'year' })}
+                </label>
+                <input
+                  type="text"
+                  id="deathYearInput"
+                  value={died.year}
+                  className={menuStyles.textField}
+                  disabled={isAlive}
+                  onChange={(event) => setDied({...died, year: event.target.value})}
+                />
+              </p>
+              <p>
+                <label htmlFor="deathMonthInput" className={menuStyles.textFieldLabel}>
+                  {intl.formatMessage({ id: 'month' })}
+                </label>
+                <select
+                  id="deathMonthInput"
+                  value={died.month}
+                  className={menuStyles.dropDownMenu}
+                  disabled={isAlive}
+                  onChange={(event) => setDied({...died, month: event.target.value})}
+                >
+                  {monthNames.map((monthName, index) => (
+                    <option
+                      value={index + 1}
+                      key={monthName}
+                    >
+                      {monthName}
+                    </option>
+                  ))}
+                </select>
+              </p>
+              <p>
+                <label htmlFor="deathDayInput" className={menuStyles.textFieldLabel}>
+                  {intl.formatMessage({ id: 'day' })}
+                </label>
+                <input
+                  type="number"
+                  min={1}
+                  max={31}
+                  value={died.day}
+                  id="deathDayInput"
+                  className={menuStyles.textField}
+                  disabled={isAlive}
+                  onChange={(event) => setDied({...born, day: event.target.value})}
+                />
+              </p>
+            </div>
+            <div className={menuStyles.inputSection}>
+              <h3 className={menuStyles.smallTitle}>
+                {intl.formatMessage({ id: 'relatives' })}
+              </h3>
+            </div>
             <p>
               <button
                 type="button"
@@ -50,16 +175,8 @@ const AddPersonMenu = () => {
                   const newPerson = {
                     id: nextId,
                     fullName,
-                    born: {
-                      year: 1922,
-                      month: 12,
-                      day: 5
-                    },
-                    died: {
-                      year: 2000,
-                      month: 1,
-                      day: 7
-                    },
+                    born,
+                    died: isAlive ? undefined : died,
                     parents: [10, 11],
                     children: [5],
                     marriedTo: [{
