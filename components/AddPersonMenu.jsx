@@ -14,6 +14,7 @@ const AddPersonMenu = () => {
   const [born, setBorn] = useState({ year: 1900, month: 1, day: 1 });
   const [died, setDied] = useState({ year: 2000, month: 1, day: 1 });
   const [isAlive, setIsAlive] = useState(false);
+  const [parents, setParents] = useState([]);
   return (
     <TreeContext.Consumer>
       { contextValue => {
@@ -157,6 +158,37 @@ const AddPersonMenu = () => {
               <h3 className={menuStyles.smallTitle}>
                 {intl.formatMessage({ id: 'relatives' })}
               </h3>
+              <p>
+                <label htmlFor="parentsInput" className={menuStyles.textFieldLabel}>
+                  {intl.formatMessage({ id: 'parents' })}
+                </label>
+              </p>
+              <div className={menuStyles.scrollableSection}>
+                {listOfPeople.map((person) => (
+                  <p className={menuStyles.personCheckboxLine} key={person.id}>
+                    <label
+                      htmlFor={`parentCheckbox${person.id}`}
+                      className={menuStyles.checkboxLabel}
+                    >
+                      {person.fullName}
+                    </label>
+                    <input
+                      type="checkbox"
+                      id={`parentCheckbox${person.id}`}
+                      className={menuStyles.checkbox}
+                      onChange={(event) => {
+                        if (event.target.checked) {
+                          setParents([...parents, person.id]);
+                        } else {
+                          setParents(parents.filter(
+                            (currentId) => currentId !== person.id
+                          ));
+                        }
+                      }}
+                    />
+                  </p>
+                ))}
+              </div>
             </div>
             <p>
               <button
@@ -177,7 +209,7 @@ const AddPersonMenu = () => {
                     fullName,
                     born,
                     died: isAlive ? undefined : died,
-                    parents: [10, 11],
+                    parents,
                     children: [5],
                     marriedTo: [{
                       spouse: 7,
