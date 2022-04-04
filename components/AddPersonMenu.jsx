@@ -15,6 +15,8 @@ const AddPersonMenu = () => {
   const [died, setDied] = useState({ year: 2000, month: 1, day: 1 });
   const [isAlive, setIsAlive] = useState(false);
   const [parents, setParents] = useState([]);
+  const [marriedTo, setMarriedTo] = useState([]);
+  const [children, setChildren] = useState([]);
   return (
     <TreeContext.Consumer>
       { contextValue => {
@@ -189,6 +191,37 @@ const AddPersonMenu = () => {
                   </p>
                 ))}
               </div>
+              <p>
+                <label htmlFor="spousesInput" className={menuStyles.textFieldLabel}>
+                  {intl.formatMessage({ id: 'marriedTo' })}
+                </label>
+              </p>
+              <div className={menuStyles.scrollableSection}>
+                {listOfPeople.map((person) => (
+                  <p className={menuStyles.personCheckboxLine} key={person.id}>
+                    <label
+                      htmlFor={`spouseCheckbox${person.id}`}
+                      className={menuStyles.checkboxLabel}
+                    >
+                      {person.fullName}
+                    </label>
+                    <input
+                      type="checkbox"
+                      id={`spouseCheckbox${person.id}`}
+                      className={menuStyles.checkbox}
+                      onChange={(event) => {
+                        if (event.target.checked) {
+                          setMarriedTo([...marriedTo, { spouse: person.id }]);
+                        } else {
+                          setMarriedTo(marriedTo.filter(
+                            (marriage) => marriage.spouse !== person.id
+                          ));
+                        }
+                      }}
+                    />
+                  </p>
+                ))}
+              </div>
             </div>
             <p>
               <button
@@ -211,9 +244,7 @@ const AddPersonMenu = () => {
                     died: isAlive ? undefined : died,
                     parents,
                     children: [5],
-                    marriedTo: [{
-                      spouse: 7,
-                    }],
+                    marriedTo,
                   }
                   const newList = addPerson({ newPerson, data: listOfPeople });
                   setListOfPeople(newList);
