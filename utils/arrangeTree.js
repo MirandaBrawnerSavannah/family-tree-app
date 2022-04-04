@@ -43,7 +43,7 @@ const arrangeTree = (people) => {
       return true;
     }
     return false;
-  }
+  };
   const moveToParent = (remainingIndex) => {
     const personOutsideGrid = remaining[remainingIndex];
     if (personOutsideGrid.parents === undefined) {
@@ -60,12 +60,34 @@ const arrangeTree = (people) => {
         colOffset += 4;
       }
       moveRelativeTo({
-        remainingIndex, personOnGrid: parent, rowOffset, colOffset
+        remainingIndex, personOnGrid: parent, rowOffset, colOffset,
       });
       return true;
     }
     return false;
-  }
+  };
+  const moveToChild = (remainingIndex) => {
+    const personOutsideGrid = remaining[remainingIndex];
+    if (personOutsideGrid.children === undefined) {
+      return false;
+    }
+    const children = grid.filter((personOnGrid) => {
+      return personOutsideGrid.children.includes(personOnGrid.person.id);
+    });
+    if (children.length > 0) {
+      const child = children[0];
+      const rowOffset = -2;
+      let colOffset = 1 - child.person.parents.length;
+      while (isOccupied({ row: child.row + rowOffset, col: child.col + colOffset })) {
+        colOffset += 2;
+      }
+      moveRelativeTo({
+        remainingIndex, personOnGrid: child, rowOffset, colOffset,
+      });
+      return true;
+    }
+    return false;
+  };
   let startingRow = 0;
   let startingCol = 0;
   while (remaining.length > 0) {
@@ -88,6 +110,15 @@ const arrangeTree = (people) => {
       while (remainingIndex < remaining.length && !foundChild) {
         foundChild = moveToParent(remainingIndex);
         if (foundChild) {
+          changed = true;
+        }
+        remainingIndex += 1;
+      }
+      let foundParent = false;
+      remainingIndex = 0;
+      while (remainingIndex < remaining.length && !foundParent) {
+        foundParent = moveToChild(remainingIndex);
+        if (foundParent) {
           changed = true;
         }
         remainingIndex += 1;
