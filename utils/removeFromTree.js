@@ -1,4 +1,4 @@
-const removeOnePersonFromTree = ({ personId, data }) => {
+export const removeOnePersonFromTree = ({ personId, data }) => {
   const copyOfData = [...data];
   data.forEach((nextPerson, index) => {
     if (nextPerson.id === personId) {
