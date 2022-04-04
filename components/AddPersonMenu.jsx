@@ -149,7 +149,7 @@ const AddPersonMenu = () => {
                   id="deathDayInput"
                   className={menuStyles.textField}
                   disabled={isAlive}
-                  onChange={(event) => setDied({...born, day: event.target.value})}
+                  onChange={(event) => setDied({...died, day: event.target.value})}
                 />
               </p>
             </div>
