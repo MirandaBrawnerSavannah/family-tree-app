@@ -160,11 +160,7 @@ const AddPersonMenu = () => {
               <h3 className={menuStyles.smallTitle}>
                 {intl.formatMessage({ id: 'relatives' })}
               </h3>
-              <p>
-                <label htmlFor="parentsInput" className={menuStyles.textFieldLabel}>
-                  {intl.formatMessage({ id: 'parents' })}
-                </label>
-              </p>
+              <p>{intl.formatMessage({ id: 'parents' })}</p>
               <div className={menuStyles.scrollableSection}>
                 {listOfPeople.map((person) => (
                   <p className={menuStyles.personCheckboxLine} key={person.id}>
@@ -191,11 +187,7 @@ const AddPersonMenu = () => {
                   </p>
                 ))}
               </div>
-              <p>
-                <label htmlFor="spousesInput" className={menuStyles.textFieldLabel}>
-                  {intl.formatMessage({ id: 'marriedTo' })}
-                </label>
-              </p>
+              <p>{intl.formatMessage({ id: 'marriedTo' })}</p>
               <div className={menuStyles.scrollableSection}>
                 {listOfPeople.map((person) => (
                   <p className={menuStyles.personCheckboxLine} key={person.id}>
@@ -215,6 +207,33 @@ const AddPersonMenu = () => {
                         } else {
                           setMarriedTo(marriedTo.filter(
                             (marriage) => marriage.spouse !== person.id
+                          ));
+                        }
+                      }}
+                    />
+                  </p>
+                ))}
+              </div>
+              <p>{intl.formatMessage({ id: 'children' })}</p>
+              <div className={menuStyles.scrollableSection}>
+                {listOfPeople.map((person) => (
+                  <p className={menuStyles.personCheckboxLine} key={person.id}>
+                    <label
+                      htmlFor={`childrenCheckbox${person.id}`}
+                      className={menuStyles.checkboxLabel}
+                    >
+                      {person.fullName}
+                    </label>
+                    <input
+                      type="checkbox"
+                      id={`childrenCheckbox${person.id}`}
+                      className={menuStyles.checkbox}
+                      onChange={(event) => {
+                        if (event.target.checked) {
+                          setChildren([...children, person.id]);
+                        } else {
+                          setChildren(children.filter(
+                            (currentId) => currentId !== person.id
                           ));
                         }
                       }}
@@ -243,8 +262,8 @@ const AddPersonMenu = () => {
                     born,
                     died: isAlive ? undefined : died,
                     parents,
-                    children: [5],
                     marriedTo,
+                    children,
                   }
                   const newList = addPerson({ newPerson, data: listOfPeople });
                   setListOfPeople(newList);
