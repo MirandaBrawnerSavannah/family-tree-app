@@ -79,6 +79,18 @@ const Tree = () => {
                 height={50}
               />
             }
+            const above = lookupInGrid({ row: row - 1, col });
+            if (
+              above && below
+              && areParentChild({ parent: above.person, child: below.person })
+            ) {
+              return <Image
+                src="/vertical.png"
+                alt=""
+                width={100}
+                height={50}
+              />
+            }
             return <span key={[row, col]}></span>;
           }
         };
