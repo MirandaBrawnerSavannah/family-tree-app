@@ -1,30 +1,45 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { TreeContext } from './TreeContext';
 import menuStyles from './AddPersonMenu.module.css';
 import Localizer from '../utils/Localizer';
-import getNextAvailableID from '../utils/getNextAvailableID';
-import addPerson from '../utils/addPerson';
 import lookupPerson from '../utils/lookupPerson';
 import updatePerson from '../utils/updatePerson';
 
-const EditPersonMenu = ({ personNumber, listOfPeople }) => {
+const EditPersonMenu = ({ personNumber, listOfPeople, setListOfPeople }) => {
   const router = useRouter();
   const { locale } = router.query;
   const intl = new Localizer(locale);
   const person = lookupPerson({ personNumber, data: listOfPeople });
-  const [fullName, setFullName] = useState(person.fullName);
-  const [born, setBorn] = useState(person.born || { year: 1900, month: 1, day: 1 });
-  const [died, setDied] = useState(person.died || { year: 2000, month: 1, day: 1 });
-  const [isAlive, setIsAlive] = useState(!person.died);
-  const [parents, setParents] = useState(person.parents);
-  const [marriedTo, setMarriedTo] = useState(person.marriedTo);
-  const [children, setChildren] = useState(person.children);
+  const [fullName, setFullName] = useState(person ? person.fullName : undefined);
+  const [born, setBorn] = useState(
+    person && person.born ? person.born : { year: 1900, month: 1, day: 1 }
+  );
+  const [isAlive, setIsAlive] = useState(person ? !person.died : true);
+  const [died, setDied] = useState(
+    person && person.died ? person.died : { year: 2000, month: 1, day: 1 }
+  );
+  const [parents, setParents] = useState(person ? person.parents : undefined);
+  const [marriedTo, setMarriedTo] = useState(person ? person.marriedTo: undefined);
+  const [children, setChildren] = useState(person ? person.children: undefined);
+  useEffect(() => {
+    setFullName(person ? person.fullName: undefined);
+    setIsAlive(person ? !person.died : true);
+    setBorn(
+      person && person.born ? person.born : { year: 1900, month: 1, day: 1 }
+    );
+    setDied(
+      person && person.died ? person.died : { year: 2000, month: 1, day: 1 }
+    );
+    setParents(person && person.parents ? person.parents : []);
+    setMarriedTo(person && person.marriedTo ? person.marriedTo: []);
+    setChildren(person && person.children ? person.children: []);
+  }, [person, personNumber, listOfPeople]);
+  if (person === undefined) return null;
   const monthNames = intl.formatMessage({ id: 'monthNames' }).split(',');
   return (
     <div className={menuStyles.menu} id="addPersonMenu">
       <h2 className={menuStyles.title}>
-        {intl.formatMessage({ id: 'newPerson' })}
+        {fullName || intl.formatMessage({ id: 'newPerson' })}
       </h2>
       <p>
         <label htmlFor="fullNameInput" className={menuStyles.textFieldLabel}>
@@ -171,6 +186,7 @@ const EditPersonMenu = ({ personNumber, listOfPeople }) => {
               <input
                 type="checkbox"
                 id={`parentCheckbox${person.id}`}
+                checked={parents && parents.includes(person.id)}
                 className={menuStyles.checkbox}
                 onChange={(event) => {
                   if (event.target.checked) {
@@ -198,6 +214,9 @@ const EditPersonMenu = ({ personNumber, listOfPeople }) => {
               <input
                 type="checkbox"
                 id={`spouseCheckbox${person.id}`}
+                checked={marriedTo && marriedTo.map(
+                  (marriage) => marriage.spouse
+                ).includes(person.id)}
                 className={menuStyles.checkbox}
                 onChange={(event) => {
                   if (event.target.checked) {
@@ -225,6 +244,7 @@ const EditPersonMenu = ({ personNumber, listOfPeople }) => {
               <input
                 type="checkbox"
                 id={`childrenCheckbox${person.id}`}
+                checked={children && children.includes(person.id)}
                 className={menuStyles.checkbox}
                 onChange={(event) => {
                   if (event.target.checked) {
@@ -245,7 +265,7 @@ const EditPersonMenu = ({ personNumber, listOfPeople }) => {
           type="button"
           className={menuStyles.button}
           onClick={() => {
-            router.push(`/locale/${locale}`);
+            router.push(`/locale/${locale}/person/${personNumber}`);
           }}
         >
           {intl.formatMessage({ id: 'cancel' })}
@@ -267,7 +287,7 @@ const EditPersonMenu = ({ personNumber, listOfPeople }) => {
               { person: updatedPerson, data: listOfPeople }
             );
             setListOfPeople(newList);
-            router.push(`/locale/${locale}`);
+            router.push(`/locale/${locale}/person/${personNumber}`);
           }}
         >
           {intl.formatMessage({ id: 'updateTree' })}

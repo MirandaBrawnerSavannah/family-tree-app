@@ -25,5 +25,6 @@
   "day": "Day:",
   "dateOfDeath": "Date of Death",
   "alive": "Still Alive:",
-  "relatives": "Relatives"
+  "relatives": "Relatives",
+  "edit": "Edit"
 }

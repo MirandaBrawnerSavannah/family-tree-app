@@ -120,6 +120,17 @@ const PersonProfile = () => {
               </p>
             )}
             <p>
+              <button
+                type="button"
+                className={profileStyles.button}
+                onClick={() => {
+                  router.push(`/locale/${locale}/person/${personNumber}/update`);
+                }}
+              >
+                {intl.formatMessage({ id: 'edit' })}
+              </button>
+            </p>
+            <p>
               <button 
                 type="button" 
                 className={profileStyles.button} 
