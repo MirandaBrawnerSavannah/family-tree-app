@@ -3,6 +3,7 @@ import Title from '../../../../../components/Title';
 import Tree from '../../../../../components/Tree';
 import AddPersonButton from '../../../../../components/AddPersonButton';
 import PersonProfile from '../../../../../components/PersonProfile';
+import ClearTreeButton from '../../../../../components/ClearTreeButton';
 
 const PersonPage = () => {
   return (
@@ -13,6 +14,7 @@ const PersonPage = () => {
         <Tree />
         <AddPersonButton />
         <PersonProfile />
+        <ClearTreeButton />
       </main>
     </div>
   );

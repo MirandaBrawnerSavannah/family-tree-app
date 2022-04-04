@@ -2,6 +2,7 @@ import LanguageList from '../../../components/LanguageList'
 import Title from '../../../components/Title';
 import Tree from '../../../components/Tree';
 import AddPersonButton from '../../../components/AddPersonButton';
+import ClearTreeButton from '../../../components/ClearTreeButton';
 
 const MainMenu = () => {
   return (
@@ -11,6 +12,7 @@ const MainMenu = () => {
         <Title />
         <Tree />
         <AddPersonButton />
+        <ClearTreeButton />
       </main>
     </div>
   );
