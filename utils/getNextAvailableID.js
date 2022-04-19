@@ -5,6 +5,9 @@ const getNextAvailableID = (data) => {
       maxID = person.id;
     }
   });
+  if (maxID === undefined) {
+    return 0;
+  }
   return maxID + 1;
 };
 export default getNextAvailableID;

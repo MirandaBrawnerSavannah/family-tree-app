@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 import Link from 'next/link'; 
 import Image from 'next/image';
 import treeStyles from './Tree.module.css';

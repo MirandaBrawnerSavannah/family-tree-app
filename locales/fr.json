@@ -26,5 +26,7 @@
   "dateOfDeath": "Date de mort",
   "alive": "Vivant(e) :",
   "relatives": "Famille",
-  "edit": "Modifier"
+  "edit": "Modifier",
+  "save": "Sauvegarder",
+  "load": "Charger"
 }
