@@ -4,7 +4,7 @@ import {
 import PropTypes from 'prop-types';
 import initialData from '../pages/API/data.json';
 
-export const TreeContext = createContext([]);
+export const TreeContext = createContext({});
 
 const TreeContextProvider = ({ children }) => {
   const [data, setData] = useState(initialData);

@@ -15,7 +15,8 @@ const Tree = () => {
   return (
     <TreeContext.Consumer>
       {contextValue => {
-        const [listOfPeople, setListOfPeople] = contextValue;
+        const [treeState, setTreeState] = contextValue;
+        const { listOfPeople } = treeState;
         const { locale } = router.query;
         const intl = new Localizer(locale);
         const sortedList = sortPeople({ list: listOfPeople, sortBy: 'age' });

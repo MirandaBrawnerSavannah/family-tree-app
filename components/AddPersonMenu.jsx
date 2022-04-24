@@ -20,7 +20,8 @@ const AddPersonMenu = () => {
   return (
     <TreeContext.Consumer>
       { contextValue => {
-        const [listOfPeople, setListOfPeople] = contextValue;
+        const [treeState, setTreeState] = contextValue;
+        const { listOfPeople } = treeState;
         const monthNames = intl.formatMessage({ id: 'monthNames' }).split(',');
         const nextId = getNextAvailableID(listOfPeople);
         return (
@@ -265,8 +266,9 @@ const AddPersonMenu = () => {
                     marriedTo,
                     children,
                   }
-                  const newList = addPerson({ newPerson, data: listOfPeople });
-                  setListOfPeople(newList);
+                  const newListOfPeople = addPerson({ newPerson, data: listOfPeople });
+                  const newTreeState = {...treeState, listOfPeople: newListOfPeople };
+                  setTreeState(newTreeState);
                   router.push(`/locale/${locale}`);
                 }}
               >

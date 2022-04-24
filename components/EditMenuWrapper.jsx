@@ -8,7 +8,12 @@ const EditMenuWrapper = () => {
   return (
     <TreeContext.Consumer>
       { contextValue => {
-        const [listOfPeople, setListOfPeople] = contextValue;
+        const [treeState, setTreeState] = contextValue;
+        const { listOfPeople } = treeState;
+        const setListOfPeople = (newListOfPeople) => {
+          const newTreeState = {...treeState, listOfPeople: newListOfPeople };
+          setTreeState(newTreeState);
+        };
         return (
           <EditPersonMenu
             personNumber={personNumber}

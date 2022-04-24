@@ -9,7 +9,7 @@ const MainMenu = () => {
   return (
     <TreeContext.Consumer>
       {contextValue => {
-        const [listOfPeople, setListOfPeople] = contextValue;
+        const [treeState, setTreeState] = contextValue;
         const { locale } = router.query;
         const intl = new Localizer(locale);
         return (
@@ -17,7 +17,7 @@ const MainMenu = () => {
             <button
               type="button"
               className={buttonStyles.button}
-              onClick={() => saveTree(listOfPeople)}
+              onClick={() => saveTree(treeState)}
             >
               {intl.formatMessage({ id: 'save' })}
             </button>
@@ -27,7 +27,7 @@ const MainMenu = () => {
               className={buttonStyles.button}
               onChange={(event) => {
                 event.target.files[0].text().then(
-                  (fileContents) => setListOfPeople(JSON.parse(fileContents))
+                  (fileContents) => setTreeState(JSON.parse(fileContents))
                 );
               }}
               style={{ display: 'none' }}

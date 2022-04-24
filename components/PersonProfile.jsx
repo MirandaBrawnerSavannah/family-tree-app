@@ -16,7 +16,8 @@ const PersonProfile = () => {
   return (
     <TreeContext.Consumer>
       { contextValue => {
-        const [listOfPeople, setListOfPeople] = contextValue;
+        const [treeState, setTreeState] = contextValue;
+        const { listOfPeople } = treeState;
         const { locale, personNumber } = router.query;
         const intl = new Localizer(locale);
         const person = lookupPerson({ personNumber, data: listOfPeople });
@@ -135,12 +136,22 @@ const PersonProfile = () => {
                 type="button" 
                 className={profileStyles.button} 
                 onClick={() => {
-                  const newList = markForDeletion(
+                  const listWithDeletionsReady = markForDeletion(
                     { personId: personNumber, data: listOfPeople }
                   );
-                  setListOfPeople(newList);
+                  const preDeletionTreeState = {
+                    ...treeState,
+                    listOfPeople: listWithDeletionsReady
+                  };
+                  setTreeState(preDeletionTreeState);
+
                   router.push(`/locale/${locale}`);
-                  setListOfPeople(removeFromTree(listOfPeople));
+
+                  const listWithDeletionsComplete = removeFromTree(listOfPeople);
+                  const postDeletionTreeState = {
+                    ...treeState, listOfPeople: listWithDeletionsComplete
+                  };
+                  setTreeState(postDeletionTreeState);
                 }}
               >
                 {intl.formatMessage({ id: 'removeFromTree' })}

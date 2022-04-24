@@ -10,14 +10,16 @@ const ClearTreeButton = () => {
   return (
     <TreeContext.Consumer>
       { contextValue => {
-        const [listOfPeople, setListOfPeople] = contextValue;
+        const [treeState, setTreeState] = contextValue;
         return (
           <div className={buttonStyles.component}>
             <button
               type="button"
               className={buttonStyles.button}
               onClick={() => {
-                setListOfPeople([]);
+                const emptyListOfPeople = [];
+                const newTreeState = {...treeState, listOfPeople: emptyListOfPeople };
+                setTreeState(newTreeState);
                 router.push(`/locale/${locale}`);
               }}
             >
