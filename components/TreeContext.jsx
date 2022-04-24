@@ -2,7 +2,7 @@ import {
   createContext, useState, useMemo, useContext,
 } from 'react';
 import PropTypes from 'prop-types';
-import initialData from '../pages/API/data.json';
+import initialData from '../pages/savedFamilyTrees/exampleTree.json';
 
 export const TreeContext = createContext({});
 
