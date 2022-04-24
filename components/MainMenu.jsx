@@ -22,6 +22,7 @@ const MainMenu = () => {
               {intl.formatMessage({ id: 'save' })}
             </button>
             <input
+              id="file-selector"
               type="file"
               className={buttonStyles.button}
               onChange={(event) => {
@@ -29,8 +30,18 @@ const MainMenu = () => {
                   (fileContents) => setListOfPeople(JSON.parse(fileContents))
                 );
               }}
-              
+              style={{ display: 'none' }}
             />
+            <button
+              type="button"
+              className={buttonStyles.button}
+              onClick={() => {
+                const fileSelector = document.getElementById('file-selector');
+                fileSelector.click();
+              }}
+            >
+              {intl.formatMessage({ id: 'load' })}
+            </button>
           </div>
         );
       }}
