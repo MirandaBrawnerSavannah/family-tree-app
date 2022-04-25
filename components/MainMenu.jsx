@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { TreeContext } from './TreeContext';
 import Localizer from '../utils/Localizer';
-import saveTree from '../utils/saveTree';
+import saveAs from '../utils/saveAs';
 import buttonStyles from './Button.module.css';
 
 const MainMenu = () => {
@@ -17,7 +17,7 @@ const MainMenu = () => {
             <button
               type="button"
               className={buttonStyles.button}
-              onClick={() => saveTree(treeState)}
+              onClick={() => saveAs(treeState)}
             >
               {intl.formatMessage({ id: 'save' })}
             </button>

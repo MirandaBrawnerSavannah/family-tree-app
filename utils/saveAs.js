@@ -1,4 +1,6 @@
-const saveTree = (data) => {
+import autoSave from './autoSave';
+
+const saveAs = (data) => {
   const fileContent = JSON.stringify(data);
   const blob = new Blob([fileContent], { type: 'text/json' });
   const linkToDownload = document.createElement('a');
@@ -7,6 +9,7 @@ const saveTree = (data) => {
   document.body.append(linkToDownload);
   linkToDownload.click();
   document.body.remove(linkToDownload);
+  autoSave(data);
   window.location.reload();
 };
-export default saveTree;
+export default saveAs;
