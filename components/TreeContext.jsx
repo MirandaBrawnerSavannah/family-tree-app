@@ -2,12 +2,18 @@ import {
   createContext, useState, useMemo, useContext,
 } from 'react';
 import PropTypes from 'prop-types';
-import initialData from '../savedFamilyTrees/exampleTree.json';
+import fs from 'fs';
+import initialData from '../savedFamilyTrees/autoSave.json';
 
 export const TreeContext = createContext({});
 
-const TreeContextProvider = ({ children }) => {
-  const [data, setData] = useState(initialData);
+export async function getStaticProps() {
+  autoSave({ data: initialData, fileSystem: fs })
+  return { props: { treeState: initialData } };
+}
+
+const TreeContextProvider = ({ treeState, children }) => {
+  const [data, setData] = useState(treeState);
   const contextValue = useMemo(() => {
     return [data, setData];
   }, [data, setData]);

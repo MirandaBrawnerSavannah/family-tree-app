@@ -9,7 +9,6 @@ const saveAs = (data) => {
   document.body.append(linkToDownload);
   linkToDownload.click();
   document.body.remove(linkToDownload);
-  autoSave(data);
   window.location.reload();
 };
 export default saveAs;

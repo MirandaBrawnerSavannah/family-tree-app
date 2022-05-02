@@ -11,9 +11,12 @@ export async function getStaticProps() {
 }
 
 const Home = ({ treeState }) => {
+  const pathFromAutoSaveFile = treeState.path;
+  const pathIfNotProvided = '/locale/en';
+  const path = pathFromAutoSaveFile || pathIfNotProvided;
   const router = useRouter();
   useEffect(() => {
-    router.push('/locale/en');
+    router.push(path);
   });
   return (
     <div>
