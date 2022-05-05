@@ -17,9 +17,12 @@ const Tree = () => {
       {contextValue => {
         const [treeState, setTreeState] = contextValue;
         const { listOfPeople } = treeState;
-        const { locale } = router.query;
+        const { locale, year: currentYear } = router.query;
         const intl = new Localizer(locale);
-        const sortedList = sortPeople({ list: listOfPeople, sortBy: 'age' });
+        const listAtCurrentTime = listOfPeople.filter(
+          (person) => person.born <= Number.parseInt(currentYear)
+        );
+        const sortedList = sortPeople({ list: listAtCurrentTime, sortBy: 'age' });
         const dataGrid = arrangeTree(sortedList);
         const { minRow, maxRow, minCol, maxCol } = getGridSize(dataGrid);
 
