@@ -9,6 +9,7 @@ import areMarried from '../utils/areMarried';
 import Localizer from '../utils/Localizer';
 import areParentChild from '../utils/areParentChild';
 import { TreeContext } from './TreeContext';
+import { filterByDate } from '../utils/filterByDate';
 
 const Tree = () => {
   const router = useRouter();
@@ -19,9 +20,12 @@ const Tree = () => {
         const { listOfPeople } = treeState;
         const { locale, year: currentYear } = router.query;
         const intl = new Localizer(locale);
-        const listAtCurrentTime = listOfPeople.filter(
-          (person) => person.born <= Number.parseInt(currentYear)
-        );
+        const currentDate = {
+          year: currentYear,
+          month: 12,
+          day: 31,
+        }
+        const listAtCurrentTime = filterByDate({ listOfPeople, date: currentDate });
         const sortedList = sortPeople({ list: listAtCurrentTime, sortBy: 'age' });
         const dataGrid = arrangeTree(sortedList);
         const { minRow, maxRow, minCol, maxCol } = getGridSize(dataGrid);
