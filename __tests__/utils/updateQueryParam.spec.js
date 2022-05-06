@@ -38,6 +38,12 @@ describe('test the updateQueryParam function', () => {
       paramName: 'second',
       paramValue: 'mouse',
       expected: 'website.com?first=cat&second=mouse&third=bear',
+    }, { 
+      name: 'replace one of two, and keep hashtag',
+      path: 'example.com?first=cat&second=dog#food',
+      paramName: 'first',
+      paramValue: 'ferret',
+      expected: 'example.com?first=ferret&second=dog#food',
     },
   ];
   const runTest = (testCase) => {
