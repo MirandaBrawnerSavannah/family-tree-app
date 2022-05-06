@@ -5,6 +5,7 @@ import Tree from '../../../../../components/Tree';
 import AddPersonButton from '../../../../../components/AddPersonButton';
 import PersonProfile from '../../../../../components/PersonProfile';
 import ClearTreeButton from '../../../../../components/ClearTreeButton';
+import DateMenu from '../../../../../components/DateMenu';
 
 const PersonPage = () => {
   return (
@@ -13,6 +14,7 @@ const PersonPage = () => {
       <MainMenu />
       <main>
         <Title />
+        <DateMenu />
         <Tree />
         <AddPersonButton />
         <PersonProfile />
