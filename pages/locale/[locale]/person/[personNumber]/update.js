@@ -4,6 +4,7 @@ import Title from '../../../../../components/Title';
 import Tree from '../../../../../components/Tree';
 import EditMenuWrapper from '../../../../../components/EditMenuWrapper';
 import ClearTreeButton from '../../../../../components/ClearTreeButton';
+import DateMenu from '../../../../../components/DateMenu';
 
 const PersonPage = () => {
   return (
@@ -12,6 +13,7 @@ const PersonPage = () => {
       <MainMenu />
       <main>
         <Title />
+        <DateMenu />
         <Tree />
         <EditMenuWrapper />
         <ClearTreeButton />

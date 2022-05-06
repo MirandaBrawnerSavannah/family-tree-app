@@ -22,7 +22,7 @@ const DateMenu = () => {
         className={menuStyles.textField}
         onChange={(event) => {
           const year = event.target.value;
-          router.push(`/locale/${locale}?year=${year}`);
+          router.push(`${router.asPath}?year=${year}`);
         }}
       />
     </p>
