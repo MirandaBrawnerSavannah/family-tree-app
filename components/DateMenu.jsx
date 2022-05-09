@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
-import QueryParamsContext from './QueryParamsContext';
 import menuStyles from './AddPersonMenu.module.css';
 import Localizer from '../utils/Localizer';
+import { updateQueryParam } from '../utils/updateQueryParam';
 
 const DateMenu = () => {
   const router = useRouter();
@@ -22,7 +22,10 @@ const DateMenu = () => {
         className={menuStyles.textField}
         onChange={(event) => {
           const year = event.target.value;
-          router.push(`${router.asPath}?year=${year}`);
+          const destination = updateQueryParam({
+            path: router.asPath, paramName: 'year', paramValue: year
+          });
+          router.push(destination);
         }}
       />
     </p>
