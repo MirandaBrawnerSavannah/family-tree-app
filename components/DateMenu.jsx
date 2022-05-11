@@ -7,8 +7,6 @@ const DateMenu = () => {
   const router = useRouter();
   const { locale } = router.query;
   const intl = new Localizer(locale);
-  console.log('Router:');
-  console.log(router);
   const { query } = router;
   return (
     <p>

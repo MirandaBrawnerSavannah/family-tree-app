@@ -26,13 +26,17 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   padding: 10px;
   text-align: center;
-  max-width: 200px;
+  max-width: 300px;
   height: 100px;
 }
 .personLink, .personLink * {
   color: darkblue;
   text-decoration: underline;
   height: 100px;
+}
+.birthDeathDates {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-right: 7px;
 }
 .addButton {
   font-family: Verdana, Geneva, Tahoma, sans-serif;

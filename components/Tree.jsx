@@ -10,6 +10,7 @@ import Localizer from '../utils/Localizer';
 import areParentChild from '../utils/areParentChild';
 import { TreeContext } from './TreeContext';
 import { filterByDate } from '../utils/filterByDate';
+import BirthDeathDates from './BirthDeathDates';
 
 const Tree = () => {
   const router = useRouter();
@@ -48,6 +49,8 @@ const Tree = () => {
                   {person.fullName}
                 </Link>
               </span>
+              <br />
+              <BirthDeathDates person={person} />
             </span>
           );
         };
