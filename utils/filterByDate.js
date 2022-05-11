@@ -19,8 +19,15 @@ const wasBornBefore = ({ person, date }) => {
 }
 
 const filterByDate = ({ listOfPeople, date }) => {
-  const listCopy = listOfPeople.filter((person) => {
+  const peopleBornBefore = listOfPeople.filter((person) => {
     return wasBornBefore({ person, date });
+  });
+  const listCopy = peopleBornBefore.map((person) => {
+    if (isBefore({ firstDate: person.died, secondDate: date })) {
+      return { ...person };
+    } else {
+      return { ...person, died: undefined };
+    }
   })
   return listCopy;
 }
