@@ -2,11 +2,19 @@ import { useRouter } from 'next/router';
 import Localizer from '../utils/Localizer';
 import { TreeContext } from './TreeContext';
 import buttonStyles from './Button.module.css';
+import { updateQueryParam } from '../utils/updateQueryParam';
 
 const ClearTreeButton = () => {
   const router = useRouter();
-  const { locale } = router.query;
+  const { locale, year: currentYear } = router.query;
   const intl = new Localizer(locale);
+  const temporalize = (basePath) => (
+    updateQueryParam({
+      path: basePath,
+      paramName: 'year',
+      paramValue: currentYear,
+    })
+  );
   return (
     <TreeContext.Consumer>
       { contextValue => {
@@ -20,7 +28,8 @@ const ClearTreeButton = () => {
                 const emptyListOfPeople = [];
                 const newTreeState = {...treeState, listOfPeople: emptyListOfPeople };
                 setTreeState(newTreeState);
-                router.push(`/locale/${locale}`);
+                const destination = temporalize(`/locale/${locale}`)
+                router.push(destination);
               }}
             >
               {intl.formatMessage({ id: 'newEmptyTree' })}

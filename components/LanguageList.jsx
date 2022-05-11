@@ -3,10 +3,18 @@ import Link from 'next/link'
 import { useRouter } from 'next/router';
 import Localizer, { localeList } from '../utils/Localizer';
 import languageStyles from './LanguageList.module.css';
+import { updateQueryParam } from '../utils/updateQueryParam';
 
 const LanguageList = () => {
   const router = useRouter();
-  const { personNumber } = router.query;
+  const { personNumber, year: currentYear } = router.query;
+  const temporalize = (basePath) => (
+    updateQueryParam({
+      path: basePath,
+      paramName: 'year',
+      paramValue: currentYear,
+    })
+  );
   return (
     <header>
       <ul>
@@ -17,6 +25,7 @@ const LanguageList = () => {
           if (personNumber !== undefined) {
             href = `${baseLocale}/person/${personNumber}`;
           }
+          href = temporalize(href);
           return (
             <li key={newLocale} className={languageStyles.languageName}>
               <span className={languageStyles.languageLink}>

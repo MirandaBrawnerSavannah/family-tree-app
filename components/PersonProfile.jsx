@@ -10,6 +10,7 @@ import CommaSeparatedList from '../components/CommaSeparatedList';
 import { TreeContext } from './TreeContext';
 import markForDeletion from '../utils/markForDeletion';
 import removeFromTree from '../utils/removeFromTree';
+import { updateQueryParam } from '../utils/updateQueryParam';
 
 const PersonProfile = () => {
   const router = useRouter();
@@ -18,7 +19,7 @@ const PersonProfile = () => {
       { contextValue => {
         const [treeState, setTreeState] = contextValue;
         const { listOfPeople } = treeState;
-        const { locale, personNumber } = router.query;
+        const { locale, personNumber, year: currentYear } = router.query;
         const intl = new Localizer(locale);
         const person = lookupPerson({ personNumber, data: listOfPeople });
         if (person === undefined) {
@@ -27,6 +28,13 @@ const PersonProfile = () => {
         const dateLocaleInfo = getDateInfo(locale);
         const birthDate = getUncertainDate(person.born);
         const deathDate = getUncertainDate(person.died);
+        const temporalize = (basePath) => (
+          updateQueryParam({
+            path: basePath,
+            paramName: 'year',
+            paramValue: currentYear,
+          })
+        );
         return (
           <div className={profileStyles.profile} id="profile">
             <h2 className={profileStyles.nameHeading}>{person.fullName}</h2>
@@ -56,12 +64,14 @@ const PersonProfile = () => {
                     const parent = lookupPerson(
                       { personNumber: parentId, data: listOfPeople }
                     );
+                    const basePath = `/locale/${locale}/person/${parentId}#profile`;
+                    const pathWithQueryParams = temporalize(basePath);
                     return (
                       <span
                         key={parentId}
                         className={profileStyles.personLink}
                       >
-                        <Link href={`/locale/${locale}/person/${parentId}#profile`}>
+                        <Link href={pathWithQueryParams}>
                           {parent.fullName}
                         </Link>
                       </span>
@@ -81,12 +91,14 @@ const PersonProfile = () => {
                     const spouse = lookupPerson(
                       { personNumber: spouseId, data: listOfPeople }
                     );
+                    const basePath = `/locale/${locale}/person/${spouseId}#profile`;
+                    const pathWithQueryParams = temporalize(basePath);
                     return (
                       <span
                         key={spouseId}
                         className={profileStyles.personLink}
                       >
-                        <Link href={`/locale/${locale}/person/${spouseId}#profile`}>
+                        <Link href={pathWithQueryParams}>
                           {spouse.fullName}
                         </Link>
                       </span>
@@ -106,12 +118,14 @@ const PersonProfile = () => {
                       { personNumber: childId, data: listOfPeople }
                     );
                     if (child === undefined) return undefined;
+                    const basePath = `/locale/${locale}/person/${childId}#profile`;
+                    const pathWithQueryParams = temporalize(basePath);
                     return (
                       <span
                         key={childId}
                         className={profileStyles.personLink}
                       >
-                        <Link href={`/locale/${locale}/person/${childId}#profile`}>
+                        <Link href={pathWithQueryParams}>
                           {child.fullName}
                         </Link>
                       </span>
@@ -125,7 +139,9 @@ const PersonProfile = () => {
                 type="button"
                 className={profileStyles.button}
                 onClick={() => {
-                  router.push(`/locale/${locale}/person/${personNumber}/update`);
+                  const basePath = `/locale/${locale}/person/${personNumber}/update`;
+                  const pathWithQueryParams = temporalize(basePath);
+                  router.push(pathWithQueryParams);
                 }}
               >
                 {intl.formatMessage({ id: 'edit' })}
@@ -145,7 +161,9 @@ const PersonProfile = () => {
                   };
                   setTreeState(preDeletionTreeState);
 
-                  router.push(`/locale/${locale}`);
+                  const basePath = `/locale/${locale}`;
+                  const pathWithQueryParams = temporalize(basePath);
+                  router.push(pathWithQueryParams);
 
                   const listWithDeletionsComplete = removeFromTree(listOfPeople);
                   const postDeletionTreeState = {

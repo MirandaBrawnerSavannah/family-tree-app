@@ -4,10 +4,11 @@ import menuStyles from './AddPersonMenu.module.css';
 import Localizer from '../utils/Localizer';
 import lookupPerson from '../utils/lookupPerson';
 import updatePerson from '../utils/updatePerson';
+import { updateQueryParam } from '../utils/updateQueryParam';
 
 const EditPersonMenu = ({ personNumber, listOfPeople, setListOfPeople }) => {
   const router = useRouter();
-  const { locale } = router.query;
+  const { locale, year: currentYear } = router.query;
   const intl = new Localizer(locale);
   const person = lookupPerson({ personNumber, data: listOfPeople });
   const [fullName, setFullName] = useState(person ? person.fullName : undefined);
@@ -21,6 +22,13 @@ const EditPersonMenu = ({ personNumber, listOfPeople, setListOfPeople }) => {
   const [parents, setParents] = useState(person ? person.parents : undefined);
   const [marriedTo, setMarriedTo] = useState(person ? person.marriedTo: undefined);
   const [children, setChildren] = useState(person ? person.children: undefined);
+  const temporalize = (basePath) => (
+    updateQueryParam({
+      path: basePath,
+      paramName: 'year',
+      paramValue: currentYear,
+    })
+  );
   useEffect(() => {
     setFullName(person ? person.fullName: undefined);
     setIsAlive(person ? !person.died : true);
@@ -265,7 +273,9 @@ const EditPersonMenu = ({ personNumber, listOfPeople, setListOfPeople }) => {
           type="button"
           className={menuStyles.button}
           onClick={() => {
-            router.push(`/locale/${locale}/person/${personNumber}`);
+            const basePath = `/locale/${locale}/person/${personNumber}`
+            const pathWithQueryParams = temporalize(basePath);
+            router.push(pathWithQueryParams);
           }}
         >
           {intl.formatMessage({ id: 'cancel' })}
@@ -287,7 +297,9 @@ const EditPersonMenu = ({ personNumber, listOfPeople, setListOfPeople }) => {
               { person: updatedPerson, data: listOfPeople }
             );
             setListOfPeople(newList);
-            router.push(`/locale/${locale}/person/${personNumber}`);
+            const basePath = `/locale/${locale}/person/${personNumber}`;
+            const pathWithQueryParams = temporalize(basePath);
+            router.push(pathWithQueryParams);
           }}
         >
           {intl.formatMessage({ id: 'updateTree' })}

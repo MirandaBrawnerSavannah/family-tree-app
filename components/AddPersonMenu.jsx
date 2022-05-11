@@ -5,10 +5,11 @@ import menuStyles from './AddPersonMenu.module.css';
 import Localizer from '../utils/Localizer';
 import getNextAvailableID from '../utils/getNextAvailableID';
 import addPerson from '../utils/addPerson';
+import { updateQueryParam } from '../utils/updateQueryParam';
 
 const AddPersonMenu = () => {
   const router = useRouter();
-  const { locale } = router.query;
+  const { locale, year: currentYear } = router.query;
   const intl = new Localizer(locale);
   const [fullName, setFullName] = useState(intl.formatMessage({ id: 'newPerson'}));
   const [born, setBorn] = useState({ year: 1900, month: 1, day: 1 });
@@ -24,6 +25,13 @@ const AddPersonMenu = () => {
         const { listOfPeople } = treeState;
         const monthNames = intl.formatMessage({ id: 'monthNames' }).split(',');
         const nextId = getNextAvailableID(listOfPeople);
+        const temporalize = (basePath) => (
+          updateQueryParam({
+            path: basePath,
+            paramName: 'year',
+            paramValue: currentYear,
+          })
+        );
         return (
           <div className={menuStyles.menu} id="addPersonMenu">
             <h2 className={menuStyles.title}>
@@ -248,7 +256,8 @@ const AddPersonMenu = () => {
                 type="button"
                 className={menuStyles.button}
                 onClick={() => {
-                  router.push(`/locale/${locale}`);
+                  const destination = temporalize(`/locale/${locale}`);
+                  router.push(destination);
                 }}
               >
                 {intl.formatMessage({ id: 'cancel' })}
@@ -269,7 +278,8 @@ const AddPersonMenu = () => {
                   const newListOfPeople = addPerson({ newPerson, data: listOfPeople });
                   const newTreeState = {...treeState, listOfPeople: newListOfPeople };
                   setTreeState(newTreeState);
-                  router.push(`/locale/${locale}`);
+                  const destination = temporalize(`/locale/${locale}`);
+                  router.push(destination);
                 }}
               >
                 {intl.formatMessage({ id: 'updateTree' })}
