@@ -11,6 +11,7 @@ import areParentChild from '../utils/areParentChild';
 import { TreeContext } from './TreeContext';
 import { filterByDate } from '../utils/filterByDate';
 import BirthDeathDates from './BirthDeathDates';
+import { updateQueryParam } from '../utils/updateQueryParam';
 
 const Tree = () => {
   const router = useRouter();
@@ -42,10 +43,16 @@ const Tree = () => {
         }
         const renderPerson = (personInGrid) => {
           const { person } = personInGrid;
+          const basePath = `/locale/${locale}/person/${person.id}#profile`
+          const pathWithQueryParams = updateQueryParam({
+            path: basePath,
+            paramName: 'year',
+            paramValue: currentYear,
+          })
           return (
             <span key={person.id} className={treeStyles.personBox}>
               <span className={treeStyles.personLink}>
-                <Link href={`/locale/${locale}/person/${person.id}#profile`}>
+                <Link href={pathWithQueryParams}>
                   {person.fullName}
                 </Link>
               </span>
