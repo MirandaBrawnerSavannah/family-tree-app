@@ -12,16 +12,9 @@ export const getMarriageStatus = ({ firstPerson, secondPerson, date }) => {
       marriedEver = true;
       if (isBefore({ firstDate: nextMarriage.startDate, secondDate: date })
       && isBefore({ firstDate: date, secondDate: nextMarriage.endDate })) {
-        console.log(`${firstPerson.fullName} and ${secondPerson.fullName}`
-        + ` got married in ${nextMarriage.startDate.year}.`)
-        if (nextMarriage.endDate) {
-          console.log(`Their marriage ended in ${nextMarriage.endDate.year}.`);
-        }
-        console.log('-----');
         marriedNow = true;
       }
       if (nextMarriage.endDate && isBefore({ firstDate: nextMarriage.endDate, secondDate: date })) {
-        console.log(`Marriage ended in ${JSON.stringify(nextMarriage.endDate)}`);
         marriedPast = true;
       }
     }
