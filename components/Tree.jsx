@@ -5,7 +5,7 @@ import treeStyles from './Tree.module.css';
 import sortPeople from '../utils/sortPeople';
 import arrangeTree from '../utils/arrangeTree';
 import getGridSize from '../utils/getGridSize';
-import areMarried from '../utils/areMarried';
+import wereEverMarried, { areMarried, areNoLongerMarried } from '../utils/areMarried';
 import Localizer from '../utils/Localizer';
 import areParentChild from '../utils/areParentChild';
 import { TreeContext } from './TreeContext';
@@ -73,10 +73,25 @@ const Tree = () => {
             const leftNeighbor = lookupInGrid({ row, col: col - 1 });
             const rightNeighbor = lookupInGrid({ row, col: col + 1 });
             if (leftNeighbor && rightNeighbor) {
-              if (areMarried(leftNeighbor.person, rightNeighbor.person)) {
+              if (areMarried({ 
+                firstPerson: leftNeighbor.person,
+                secondPerson: rightNeighbor.person,
+                date: currentDate,
+              })) {
                 return (
                   <span className={treeStyles.marriageBox}>
                     {intl.formatMessage({ id: 'marriageLine' })}
+                  </span>
+                );
+              }
+              if (areNoLongerMarried({ 
+                firstPerson: leftNeighbor.person,
+                secondPerson: rightNeighbor.person,
+                date: currentDate,
+              })) {
+                return (
+                  <span className={treeStyles.marriageBox}>
+                    {intl.formatMessage({ id: 'pastMarriageLine' })}
                   </span>
                 );
               }
@@ -86,7 +101,7 @@ const Tree = () => {
             const below = lookupInGrid({ row: row + 1, col });
             if (
               leftAbove && rightAbove && below 
-              && areMarried(leftAbove.person, rightAbove.person)
+              && wereEverMarried(leftAbove.person, rightAbove.person)
               && areParentChild({ parent: leftAbove.person, child: below.person })
               && areParentChild({ parent: rightAbove.person, child: below.person })
             ) {

@@ -12,6 +12,7 @@
   "notFound": "Error: Not Found",
   "children": "Children:",
   "marriageLine": "...married...",
+  "pastMarriageLine": "...formerly married...",
   "marriedTo": "Married to:",
   "removeFromTree": "Remove from Tree",
   "newPerson": "New Person",
