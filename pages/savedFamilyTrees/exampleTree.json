@@ -12,7 +12,10 @@
       "children": [3, 8, 9],
       "marriedTo": [
         {
-          "spouse": 1
+          "spouse": 1,
+          "startDate": {
+            "year": 1996
+          }
         }
       ]
     },
@@ -28,7 +31,10 @@
       "parents": [14, 15],
       "marriedTo": [
         {
-          "spouse": 0
+          "spouse": 0,
+          "startDate": {
+            "year": 1996
+          }
         }
       ]
     },
@@ -43,7 +49,10 @@
       "parents": [12, 13],
       "marriedTo": [
         {
-          "spouse": 3
+          "spouse": 3,
+          "startDate": {
+            "year": 2021
+          }
         }
       ]
     },
@@ -58,7 +67,10 @@
       "parents": [0, 1],
       "marriedTo": [
         {
-          "spouse": 2
+          "spouse": 2,
+          "startDate": {
+            "year": 2021
+          }
         }
       ]
     },
@@ -79,7 +91,10 @@
       "children": [0, 20],
       "marriedTo": [
         {
-          "spouse": 5
+          "spouse": 5,
+          "startDate": {
+            "year": 1967
+          }
         }
       ]
     },
@@ -94,7 +109,10 @@
       "children": [0, 20],
       "marriedTo": [
         {
-          "spouse": 4
+          "spouse": 4,
+          "startDate": {
+            "year": 1967
+          }
         }
       ]
     },
@@ -115,7 +133,10 @@
       "children": [4],
       "marriedTo": [
         {
-          "spouse": 7
+          "spouse": 7,
+          "startDate": {
+            "year": 1942
+          }
         }
       ]
     },
@@ -135,7 +156,10 @@
       "children": [4],
       "marriedTo": [
         {
-          "spouse": 6
+          "spouse": 6,
+          "startDate": {
+            "year": 1942
+          }
         }
       ]
     },
@@ -175,7 +199,10 @@
       "children": [6],
       "marriedTo": [
         {
-          "spouse": 11
+          "spouse": 11,
+          "startDate": {
+            "year": 1918
+          }
         }
       ]
     },
@@ -195,7 +222,10 @@
       "children": [6],
       "marriedTo": [
         {
-          "spouse": 10
+          "spouse": 10,
+          "startDate": {
+            "year": 1918
+          }
         }
       ]
     },
@@ -210,7 +240,10 @@
       "children": [2],
       "marriedTo": [
         {
-          "spouse": 13
+          "spouse": 13,
+          "startDate": {
+            "year": 1994
+          }
         }
       ]
     },
@@ -225,7 +258,10 @@
       "children": [2],
       "marriedTo": [
         {
-          "spouse": 12
+          "spouse": 12,
+          "startDate": {
+            "year": 1994
+          }
         }
       ]
     },
@@ -239,13 +275,22 @@
       },
       "marriedTo": [
         {
-          "spouse": 15
+          "spouse": 15,
+          "startDate": {
+            "year": 1969
+          },
+          "endDate": {
+            "year": 1981
+          }
         },
         {
-          "spouse": 16
+          "spouse": 16,
+          "startDate": {
+            "year": 2015
+          }
         }
       ],
-      "children": [1, 19]
+      "children": [1, 19, 23]
     },
     {
       "id": 15,
@@ -257,10 +302,16 @@
       },
       "marriedTo": [
         {
-          "spouse": 14
+          "spouse": 14,
+          "startDate": {
+            "year": 1969
+          },
+          "endDate": {
+            "year": 1981
+          }
         }
       ],
-      "children": [1, 19]
+      "children": [1, 19, 23]
     },
     {
       "id": 16,
@@ -272,7 +323,10 @@
       },
       "marriedTo": [
         {
-          "spouse": 14
+          "spouse": 14,
+          "startDate": {
+            "year": 2015
+          }
         }
       ],
       "parents": [17, 18]
@@ -287,7 +341,10 @@
       },
       "marriedTo": [
         {
-          "spouse": 18
+          "spouse": 18,
+          "startDate": {
+            "year": 1948
+          }
         }
       ],
       "children": [16]
@@ -302,7 +359,10 @@
       },
       "marriedTo": [
         {
-          "spouse": 17
+          "spouse": 17,
+          "startDate": {
+            "year": 1948
+          }
         }
       ],
       "children": [16]
@@ -328,7 +388,10 @@
       "parents": [4, 5],
       "marriedTo": [
         {
-          "spouse": 21
+          "spouse": 21,
+          "startDate": {
+            "year": 1993
+          }
         }
       ],
       "children": [22]
@@ -343,7 +406,10 @@
       },
       "marriedTo": [
         {
-          "spouse": 20
+          "spouse": 20,
+          "startDate": {
+            "year": 1993
+          }
         }
       ],
       "children": [22]
