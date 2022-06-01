@@ -1,4 +1,4 @@
-const isBefore = ({ firstDate, secondDate }) => {
+export const isBefore = ({ firstDate, secondDate }) => {
   if (firstDate === undefined || firstDate.year === undefined) return true;
   if (secondDate === undefined || secondDate.year === undefined) return true;
   if (firstDate.year < secondDate.year) return true;
